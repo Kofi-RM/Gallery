@@ -17,31 +17,30 @@ public class GalleryApp extends Application {
     @Override
     public void start(Stage stage) {
         MenuBar menu = new MenuBar();
-        Menu ass = new Menu("Ass Cakes");
-        menu.prefWidth(150);
-        menu.minWidth(130);
+        Menu music = new Menu("Find Music");
         menu.setMinWidth(640);
-        menu.maxWidth(200);
-        System.out.println(menu.getWidth());
-        System.out.println(menu.getMinWidth());
-        //System.out.println(USE_PREF_SIZE);
-        menu.getMenus().add(ass);
+
+        menu.getMenus().add(music);
         TilePane tile = new TilePane();
         tile.setPrefColumns(5);
+        tile.setMinWidth(300);
+        tile.setMaxWidth(640);
+        tile.setMinHeight(300);
 
         for (int loop = 0; loop < 25; loop++) {
             tile.getChildren().add(new Thumbnail());
         }
 
         HBox mun = new HBox(menu);
-        VBox pane = new VBox(2, mun, new SearchBar(), tile);
+        VBox pane = new VBox(2, mun, new SearchBar(), tile, new Progress());
 
         Scene scene = new Scene(pane);
-        stage.setMaxWidth(640);
-        stage.setMaxHeight(480);
+        stage.setMaxWidth(620);
+        stage.setMaxHeight(600);
         stage.setTitle("GalleryApp!");
         stage.setScene(scene);
         stage.sizeToScene();
+        //stage.setMaximized(true);
         stage.show();
     } // start
 

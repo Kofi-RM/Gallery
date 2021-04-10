@@ -11,7 +11,7 @@ public class Thumbnail extends ImageView {
 
     public Thumbnail() {
         super();
-        img = new Image(DEFAULT_IMG, 50, 50, false, false);
+        img = new Image(DEFAULT_IMG, 100, 100, false, false);
         setImage(img);
     }
 }
