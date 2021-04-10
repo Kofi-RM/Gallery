@@ -18,6 +18,13 @@ public class SearchBar extends HBox {
         SearchBar.setMargin(text, new Insets(8, 0, 5, 0));
         SearchBar.setMargin(url, new Insets(5, 0, 5, 0));
         SearchBar.setMargin(update, new Insets(5, 5, 5, 0));
+
+        update.setOnAction(e -> search());
+
         getChildren().addAll(pause, text, url, update);
+    }
+
+    public void search() {
+        System.out.println("yes");
     }
 }
