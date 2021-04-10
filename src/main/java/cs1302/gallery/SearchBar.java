@@ -40,14 +40,11 @@ public class SearchBar extends HBox {
             number++;
             input.next();
         }
-        input.reset();
 
-        System.out.println(number);
         if (number == 1) {
             text = rawText;
-
         } else if (number > 1) {
-            System.out.println("poo");
+
             Scanner input2 = new Scanner(url.getText());
             text = input2.next();
 
@@ -64,9 +61,9 @@ public class SearchBar extends HBox {
             URL search = new URL(address);
 
             Scanner site = new Scanner(search.openStream());
-            //while (site.hasNextLine()) {
-            //  textFlow.getChildren().add(new Text(site.nextLine() + "\n"));
-            // } // while
+            while (site.hasNextLine()) {
+                System.out.println(site.nextLine() + "\n");
+            } // while
         } catch (IOException ex) {
             //textFlow.getChildren().add(new Text(ex.getMessage()));
         } // try
