@@ -7,6 +7,8 @@ import javafx.geometry.Insets;
 import java.util.Scanner;
 import java.io.IOException;
 import java.net.URL;
+import java.io.InputStreamReader;
+import com.google.gson.*;
 
 public class SearchBar extends HBox {
 
@@ -15,7 +17,7 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=50&media=music";
+    String apple2 = "&limit=5&media=music";
 
 
     public SearchBar() {
@@ -60,10 +62,15 @@ public class SearchBar extends HBox {
 
             URL search = new URL(address);
 
-            Scanner site = new Scanner(search.openStream());
-            while (site.hasNextLine()) {
-                System.out.println(site.nextLine() + "\n");
-            } // while
+            InputStreamReader reader = new InputStreamReader(search.openStream());
+            JsonElement fuckme = JsonParser.parseReader(reader);
+
+            System.out.println( "\n"  + fuckme);
+
+            JsonObject root = fuckme.getAsJsonObject();
+            JsonArray results = root.getAsJsonArray("results");
+            int numResults = results.size();
+            System.out.println(numResults);
         } catch (IOException ex) {
             //textFlow.getChildren().add(new Text(ex.getMessage()));
         } // try
