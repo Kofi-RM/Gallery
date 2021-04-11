@@ -20,6 +20,7 @@ public class GalleryApp extends Application {
     /** {@inheritdoc} */
     @Override
     public void start(Stage stage) {
+        System.out.println("yo");
         MenuBar menu = new MenuBar();
         Menu music = new Menu("Find Music");
         menu.setMinWidth(640);
@@ -78,10 +79,10 @@ public class GalleryApp extends Application {
 
 
             icons.getChildren().addAll(h,i,j,k,l);
-
+            System.out.println("jk");
 
         HBox mun = new HBox(menu);
-        VBox pane = new VBox(2, mun, new SearchBar(), icons, new Progress());
+        VBox pane = new VBox(2, mun, new SearchBar(this), icons, new Progress());
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 

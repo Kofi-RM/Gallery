@@ -19,10 +19,14 @@ public class SearchBar extends HBox {
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
     String apple2 = "&limit=5&media=music";
+    GalleryApp appl;
 
 
-    public SearchBar() {
+    public SearchBar(GalleryApp app) {
         super(5);
+
+        appl = app;
+
         SearchBar.setMargin(pause, new Insets(5));
         SearchBar.setMargin(text, new Insets(8, 0, 5, 0));
         SearchBar.setMargin(url, new Insets(5, 0, 5, 0));
@@ -80,7 +84,7 @@ public class SearchBar extends HBox {
             }
             System.out.println("images " + images);
             Image thumb = new Image(results.get(1).getAsJsonObject().get("artworkUrl100").toString());
-            GalleryApp.array[0].setImage(thumb);
+            appl.array[0].setImage(thumb);
         } catch (IOException ex) {
             //textFlow.getChildren().add(new Text(ex.getMessage()));
         } // try
