@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.io.InputStreamReader;
 import com.google.gson.*;
+import javafx.scene.image.*;
 
 public class SearchBar extends HBox {
 
@@ -70,7 +71,16 @@ public class SearchBar extends HBox {
             JsonObject root = fuckme.getAsJsonObject();
             JsonArray results = root.getAsJsonArray("results");
             int numResults = results.size();
-            System.out.println(numResults);
+            int images = 0;
+
+            for (int loop = 0; loop < 5; loop++) {
+                if (results.get(loop).getAsJsonObject().get("artworkUrl100") != null) {
+                    images++;
+                }
+            }
+            System.out.println("images " + images);
+            Image thumb = new Image(results.get(1).getAsJsonObject().get("artworkUrl100").toString());
+            GalleryApp.array[0].setImage(thumb);
         } catch (IOException ex) {
             //textFlow.getChildren().add(new Text(ex.getMessage()));
         } // try

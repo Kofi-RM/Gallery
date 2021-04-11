@@ -8,11 +8,14 @@ import javafx.stage.Stage;
 import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
+import javafx.scene.image.*;
 
 /**
  * Represents an iTunes GalleryApp!
  */
 public class GalleryApp extends Application {
+
+    public ImageView[] array = new ImageView[25];
 
     /** {@inheritdoc} */
     @Override
@@ -39,32 +42,42 @@ public class GalleryApp extends Application {
         l.setAlignment(Pos.CENTER);
 
 
-        HBox m = new HBox();
-        m.setAlignment(Pos.CENTER);
+        HBox h = new HBox();
+        h.setAlignment(Pos.CENTER);
 
 
             for (int loop = 0; loop < 5; loop++) {
-                m.getChildren().add(new Thumbnail());
+                Thumbnail icon = new Thumbnail();
+                h.getChildren().add(icon);
+                array[loop] = icon;
             }
 
             for (int loop = 0; loop < 5; loop++) {
-                 i.getChildren().add(new Thumbnail());
+                Thumbnail icon = new Thumbnail();
+                i.getChildren().add(icon);
+                array[loop + 5] = icon;
              }
 
             for (int loop = 0; loop < 5; loop++) {
-                 j.getChildren().add(new Thumbnail());
+                Thumbnail icon = new Thumbnail();
+                j.getChildren().add(icon);
+                array[loop + 10] = icon;
              }
 
             for (int loop = 0; loop < 5; loop++) {
-                 k.getChildren().add(new Thumbnail());
+                Thumbnail icon = new Thumbnail();
+                k.getChildren().add(icon);
+                array[loop + 15] = icon;
              }
 
             for (int loop = 0; loop < 5; loop++) {
-                 l.getChildren().add(new Thumbnail());
+                Thumbnail icon = new Thumbnail();
+                l.getChildren().add(icon);
+                array[loop + 20] = icon;
              }
 
 
-            icons.getChildren().addAll(i,j,k,l,m);
+            icons.getChildren().addAll(h,i,j,k,l);
 
 
         HBox mun = new HBox(menu);
