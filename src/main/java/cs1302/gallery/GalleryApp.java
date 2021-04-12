@@ -16,7 +16,7 @@ import javafx.scene.image.*;
 public class GalleryApp extends Application {
 
     public ImageView[] array = new ImageView[25];
-
+    TilePane pane = new TilePane();
     /** {@inheritdoc} */
     @Override
     public void start(Stage stage) {
@@ -30,20 +30,27 @@ public class GalleryApp extends Application {
 
         Thread task = new Thread(() -> {
             System.out.println("start");
+            pane = new TilePane();
+            pane.setPrefColumns(5);
 
             System.out.println("end");
         });
         task.start();
 
+        for (int loop = 0; loop < 25; loop++) {
+                 pane.getChildren().add(new Thumbnail());
+             }
+
+
         System.out.println("yo");
 
 
         HBox mun = new HBox(menu);
-        VBox pane = new VBox(2, mun, new SearchBar(this), tile, new Progress());
+        VBox glass = new VBox(2, mun, new SearchBar(this), pane, new Progress());
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 
-        Scene scene = new Scene(pane);
+        Scene scene = new Scene(glass);
         stage.setMaxWidth(920);
         stage.setMaxHeight(600);
         stage.setMinWidth(420);
@@ -53,7 +60,7 @@ public class GalleryApp extends Application {
         stage.setScene(scene);
         stage.sizeToScene();
 
-        System.out.println(icons.getHeight());
+
         //stage.setMaximized(true);
         stage.show();
         //stage.setResizable(false);
