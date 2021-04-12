@@ -42,7 +42,7 @@ public class GalleryApp extends Application {
              }
 
 
-        System.out.println("yo");
+        System.out.println("yuo");
 
 
         HBox mun = new HBox(menu);
