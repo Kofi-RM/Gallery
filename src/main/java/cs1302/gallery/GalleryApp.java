@@ -37,7 +37,7 @@ public class GalleryApp extends Application {
         });
         task.start();
 
-        for (int loop = 0; loop < 25; loop++) {
+        for (int loop = 0; loop < 20; loop++) {
             ImageView k = new Thumbnail();
             pane.getChildren().add(k);
             array[loop] = k;

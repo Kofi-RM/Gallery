@@ -10,6 +10,8 @@ import java.net.URL;
 import java.io.InputStreamReader;
 import com.google.gson.*;
 import javafx.scene.image.*;
+import java.net.MalformedURLException;
+import java.io.IOException;
 
 public class SearchBar extends HBox {
 
@@ -24,6 +26,8 @@ public class SearchBar extends HBox {
     URL search;
     InputStreamReader reader;
     JsonElement jetson;
+    JsonObject root;
+    JsonArray results;
 
     public SearchBar(GalleryApp app) {
         super(5);
@@ -41,32 +45,9 @@ public class SearchBar extends HBox {
     }
 
     public void search() {
-        Scanner input = new Scanner(url.getText());
-        String rawText = url.getText();
-        String text;
-        int number = 0;
-
-        while(input.hasNext() == true) {
-            number++;
-            input.next();
-        }
-
-        if (number == 1) {
-            text = rawText;
-        } else if (number > 1) {
-
-            Scanner input2 = new Scanner(url.getText());
-            text = input2.next();
-
-            for (int loop = 0; loop < number - 1; loop++) {
-                text = text + "+" + input2.next();
-            }
-        } else {
-            return;
-            }
 
         String address = apple1 + text + apple2;
-        try {
+        //try {
 
             search = new URL(address);
 
@@ -75,8 +56,8 @@ public class SearchBar extends HBox {
 
 
 
-            JsonObject root = jetson.getAsJsonObject();
-            JsonArray results = root.getAsJsonArray("results");
+            root = jetson.getAsJsonObject();
+            results = root.getAsJsonArray("results");
             int numImages = results.size();
 
             System.out.println("images " + numImages);
@@ -85,20 +66,76 @@ public class SearchBar extends HBox {
                 return;
             }
 
-            String picAdd = results.get(0).getAsJsonObject().get("artworkUrl100").toString();
 
+            uploadImages(20, results);
 
-            picAdd = picAdd.substring(1, picAdd.length() - 1);
-            System.out.println("pic " + picAdd);
-            Image pic = new Image(picAdd);
-            appl.array[0].setImage(pic);
-        } catch (IOException ex) {
+            // } catch (IOException ex) {
             System.out.println("no image");
-        } // try
+            // } // try
         System.out.println(address);
+        System.out.println(apple1 + "aries+welcome+home" + apple2);
     } // search
 
-    public void defaultSearch() {
+    public void defaultSearch() /*throws MalformedURLException, java.io.IOException */ {
+        String address = apple1 + "aries+welcome+home" + apple2;
+        try {
+        URL search  = new URL(address);
+
+        reader = new InputStreamReader(search.openStream());
+
+
+
+        jetson = JsonParser.parseReader(reader);
+
+
+        root = jetson.getAsJsonObject();
+        results = root.getAsJsonArray("results");
+
+        uploadImages(12, results);
+
+
+    } // DEFAULT//
+
+    public void uploadImages(int i, JsonArray array) {
+        for (int loop = 0; loop < i; loop++) {
+            String pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+
+            Image pic = new Image(pi);
+            appl.array[loop].setImage(pic);
+        }
+    }
+
+    public String  urlTrim(String url) {
+        String trim;
+        trim = url.substring(1, url.length() - 1);
+        return trim;
+    }
+
+    public String  urlMaker(String textBox) {
+        Scanner input = new Scanner(url.getText());
+        int number = 0;
+        String text;
+
+        while(input.hasNext() == true) {
+            number++;
+            input.next();
+        }
+
+        if (number == 1) {
+            return text;
+        } else if (number > 1) {
+
+            Scanner input2 = new Scanner(url.getText());
+            text = input2.next();
+
+            for (int loop = 0; loop < number - 1; loop++) {
+                text = text + "+" + input2.next();
+              }
+            return text;
+        } else {
+            return "";
+        }
 
     }
+
 }
