@@ -38,8 +38,10 @@ public class GalleryApp extends Application {
         task.start();
 
         for (int loop = 0; loop < 25; loop++) {
-                 pane.getChildren().add(new Thumbnail());
-             }
+            ImageView k = new Thumbnail();
+            pane.getChildren().add(k);
+            array[loop] = k;
+        }
 
 
         System.out.println("yuo");

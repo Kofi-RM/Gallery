@@ -74,20 +74,20 @@ public class SearchBar extends HBox {
 
             JsonObject root = fuckme.getAsJsonObject();
             JsonArray results = root.getAsJsonArray("results");
-            int numResults = results.size();
-            int images = 0;
+            int numImages = results.size();
 
-            for (int loop = 0; loop < 5; loop++) {
-                if (results.get(loop).getAsJsonObject().get("artworkUrl100") != null) {
-                    images++;
-                }
-            }
-            System.out.println("images " + images);
+            System.out.println("images " + numImages);
             // Image thumb = new Image(
-            System.out.println("ye" + results.get(1).getAsJsonObject().get("artworkUrl100"));
-            //appl.array[0].setImage(thumb);
+
+            //  System.out.println("ye" + results.get(1).getAsJsonObject().get("artworkUrl100"));
+            System.out.println(results.get(1).getAsJsonObject().get("artworkUrl100").toString());
+            String picAdd = results.get(1).getAsJsonObject().get("artworkUrl100").toString();
+            picAdd = picAdd.substring(1, picAdd.length() - 1);
+            System.out.println("pic " + picAdd);
+            Image pic = new Image(picAdd);
+            appl.array[0].setImage(pic);
         } catch (IOException ex) {
-            //textFlow.getChildren().add(new Text(ex.getMessage()));
+            System.out.println(ex.getMessage());
         } // try
         System.out.println(address);
     }
