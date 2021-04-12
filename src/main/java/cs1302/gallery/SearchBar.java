@@ -18,9 +18,12 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=5&media=music";
+    String apple2 = "&limit=35&media=music";
     GalleryApp appl;
-
+    String[] query = new String[35];
+    URL search;
+    InputStreamReader reader;
+    JsonElement jetson;
 
     public SearchBar(GalleryApp app) {
         super(5);
@@ -65,30 +68,37 @@ public class SearchBar extends HBox {
         String address = apple1 + text + apple2;
         try {
 
-            URL search = new URL(address);
+            search = new URL(address);
 
-            InputStreamReader reader = new InputStreamReader(search.openStream());
-            JsonElement fuckme = JsonParser.parseReader(reader);
+            reader = new InputStreamReader(search.openStream());
+            jetson = JsonParser.parseReader(reader);
 
-            System.out.println( "\n"  + fuckme);
 
-            JsonObject root = fuckme.getAsJsonObject();
+
+            JsonObject root = jetson.getAsJsonObject();
             JsonArray results = root.getAsJsonArray("results");
             int numImages = results.size();
 
             System.out.println("images " + numImages);
-            // Image thumb = new Image(
 
-            //  System.out.println("ye" + results.get(1).getAsJsonObject().get("artworkUrl100"));
-            System.out.println(results.get(1).getAsJsonObject().get("artworkUrl100").toString());
-            String picAdd = results.get(1).getAsJsonObject().get("artworkUrl100").toString();
+            if (numImages == 0) {
+                return;
+            }
+
+            String picAdd = results.get(0).getAsJsonObject().get("artworkUrl100").toString();
+
+
             picAdd = picAdd.substring(1, picAdd.length() - 1);
             System.out.println("pic " + picAdd);
             Image pic = new Image(picAdd);
             appl.array[0].setImage(pic);
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println("no image");
         } // try
         System.out.println(address);
+    } // search
+
+    public void defaultSearch() {
+
     }
 }
