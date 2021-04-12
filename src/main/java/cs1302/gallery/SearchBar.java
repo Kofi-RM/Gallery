@@ -83,8 +83,9 @@ public class SearchBar extends HBox {
                 }
             }
             System.out.println("images " + images);
-            Image thumb = new Image(results.get(1).getAsJsonObject().get("artworkUrl100").toString());
-            appl.array[0].setImage(thumb);
+            // Image thumb = new Image(
+            System.out.println("ye" + results.get(1).getAsJsonObject().get("artworkUrl100"));
+            //appl.array[0].setImage(thumb);
         } catch (IOException ex) {
             //textFlow.getChildren().add(new Text(ex.getMessage()));
         } // try

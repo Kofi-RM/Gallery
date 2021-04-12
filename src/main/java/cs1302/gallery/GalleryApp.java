@@ -20,7 +20,7 @@ public class GalleryApp extends Application {
     /** {@inheritdoc} */
     @Override
     public void start(Stage stage) {
-        System.out.println("yo");
+
         MenuBar menu = new MenuBar();
         Menu music = new Menu("Find Music");
         menu.setMinWidth(640);
@@ -31,6 +31,7 @@ public class GalleryApp extends Application {
         HBox i = new HBox();
         i.setAlignment(Pos.CENTER);
         i.setMinWidth(50);
+
 
         HBox j = new HBox();
         j.setAlignment(Pos.CENTER);
@@ -46,39 +47,59 @@ public class GalleryApp extends Application {
         HBox h = new HBox();
         h.setAlignment(Pos.CENTER);
 
-
+        Thread task = new Thread(() -> {
             for (int loop = 0; loop < 5; loop++) {
                 Thumbnail icon = new Thumbnail();
                 h.getChildren().add(icon);
                 array[loop] = icon;
+                icons.getChildren().add(h);
             }
+        });
+        task.start();
 
-            for (int loop = 0; loop < 5; loop++) {
-                Thumbnail icon = new Thumbnail();
-                i.getChildren().add(icon);
-                array[loop + 5] = icon;
-             }
+        System.out.println("yo");
 
+        Thread task2 = new Thread(() -> {
+              for (int loop = 0; loop < 5; loop++) {
+                  Thumbnail icon = new Thumbnail();
+                  i.getChildren().add(icon);
+                  array[loop + 5] = icon;
+                  icons.getChildren().add(i);
+              }
+        });
+        task2.start();
+
+        Thread task3 = new Thread(() -> {
             for (int loop = 0; loop < 5; loop++) {
                 Thumbnail icon = new Thumbnail();
                 j.getChildren().add(icon);
                 array[loop + 10] = icon;
-             }
+                icons.getChildren().add(j);
+            }
+        });
+        task3.start();
 
+        Thread task4 = new Thread(() -> {
             for (int loop = 0; loop < 5; loop++) {
                 Thumbnail icon = new Thumbnail();
                 k.getChildren().add(icon);
                 array[loop + 15] = icon;
+                icons.getChildren().add(k);
+            }
+        });
+        task4.start();
+
+        Thread task5 = new Thread(() -> {
+        for (int loop = 0; loop < 5; loop++) {
+            Thumbnail icon = new Thumbnail();
+            l.getChildren().add(icon);
+            array[loop + 20] = icon;
+            icons.getChildren().add(l);
              }
-
-            for (int loop = 0; loop < 5; loop++) {
-                Thumbnail icon = new Thumbnail();
-                l.getChildren().add(icon);
-                array[loop + 20] = icon;
-             }
-
-
-            icons.getChildren().addAll(h,i,j,k,l);
+        });
+        task5.start();
+            System.out.println("yo");
+            //icons.getChildren().addAll(h,i,j,k,l);
             System.out.println("jk");
 
         HBox mun = new HBox(menu);
@@ -100,6 +121,6 @@ public class GalleryApp extends Application {
         //stage.setMaximized(true);
         stage.show();
         //stage.setResizable(false);
-    } // start
+        } // start
 
 } // GalleryApp
