@@ -12,6 +12,7 @@ import com.google.gson.*;
 import javafx.scene.image.*;
 import java.net.MalformedURLException;
 import java.io.IOException;
+import javafx.application.*;
 
 public class SearchBar extends HBox {
 
@@ -42,12 +43,16 @@ public class SearchBar extends HBox {
         update.setOnAction(e -> search());
 
         getChildren().addAll(pause, text, url, update);
+
+        defaultSearch();
     }
 
     public void search() {
 
-        String address = apple1 + text + apple2;
-        //try {
+
+
+        String address = apple1 + urlMaker(url.getText())  + apple2;
+        try {
 
             search = new URL(address);
 
@@ -67,37 +72,54 @@ public class SearchBar extends HBox {
             }
 
 
-            uploadImages(20, results);
+            uploadImages(0, 20, results);
 
-            // } catch (IOException ex) {
+             } catch (IOException ex) {
             System.out.println("no image");
-            // } // try
+        } // try
         System.out.println(address);
         System.out.println(apple1 + "aries+welcome+home" + apple2);
     } // search
 
-    public void defaultSearch() /*throws MalformedURLException, java.io.IOException */ {
-        String address = apple1 + "aries+welcome+home" + apple2;
+    public void defaultSearch()  {
+
+        String address = apple1 + "aries" + apple2;
+        String adress = apple1 + "post+malone" + apple2;
+        String dress = apple1 + "jack+harlow" + apple2;
+        String ress = apple1 + "herro" + apple2;
+        String ess = apple1 + "halsey" + apple2;
+//        try {
+            uploadImages(0, 6, results(address));
+            uploadImages(6, 8, results(adress));
+            uploadImages(8, 10, results(dress));
+            uploadImages(10, 18, results(ress));
+            uploadImages(18, 20, results(ess));
+
+            //      } catch (IOException ex) {
+
+            // } // try
+    } // Default()
+
+
+    public JsonArray results(String address) {
         try {
-        URL search  = new URL(address);
+            search  = new URL(address);
 
-        reader = new InputStreamReader(search.openStream());
+            reader = new InputStreamReader(search.openStream());
+            jetson = JsonParser.parseReader(reader);
 
-
-
-        jetson = JsonParser.parseReader(reader);
-
-
-        root = jetson.getAsJsonObject();
-        results = root.getAsJsonArray("results");
-
-        uploadImages(12, results);
+            root = jetson.getAsJsonObject();
+            results = root.getAsJsonArray("results");
 
 
-    } // DEFAULT//
+        } catch (IOException ex){
+            System.out.println("YES HARDER DADDY");
+        }
 
-    public void uploadImages(int i, JsonArray array) {
-        for (int loop = 0; loop < i; loop++) {
+        return results;
+    }
+    public void uploadImages(int start, int stop, JsonArray array) {
+        for (int loop = start; loop < stop; loop++) {
             String pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
             Image pic = new Image(pi);
@@ -114,7 +136,7 @@ public class SearchBar extends HBox {
     public String  urlMaker(String textBox) {
         Scanner input = new Scanner(url.getText());
         int number = 0;
-        String text;
+        String text = textBox;
 
         while(input.hasNext() == true) {
             number++;

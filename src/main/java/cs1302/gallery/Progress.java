@@ -10,7 +10,7 @@ import javafx.scene.control.ProgressBar;
 public class Progress extends HBox {
 
     Text text = new Text("Images provided courtesy of Itunes");
-    ProgressBar bar = new ProgressBar();
+    ProgressBar bar = new ProgressBar(0.0);
 
     public Progress() {
         super();

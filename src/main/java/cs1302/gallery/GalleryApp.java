@@ -9,6 +9,7 @@ import javafx.scene.layout.*;
 import javafx.scene.control.*;
 import javafx.geometry.*;
 import javafx.scene.image.*;
+import javafx.geometry.Insets;
 
 /**
  * Represents an iTunes GalleryApp!
@@ -23,8 +24,8 @@ public class GalleryApp extends Application {
 
         MenuBar menu = new MenuBar();
         Menu music = new Menu("Find Music");
-        menu.setMinWidth(640);
-        menu.setMaxWidth(900);
+        menu.setMinWidth(920);
+        menu.setMaxWidth(1000);
         menu.getMenus().add(music);
 
 
@@ -32,6 +33,7 @@ public class GalleryApp extends Application {
             System.out.println("start");
             pane = new TilePane();
             pane.setPrefColumns(5);
+            pane.setPadding(new Insets(5));
 
             System.out.println("end");
         });
@@ -39,6 +41,7 @@ public class GalleryApp extends Application {
 
         for (int loop = 0; loop < 20; loop++) {
             ImageView k = new Thumbnail();
+
             pane.getChildren().add(k);
             array[loop] = k;
         }
@@ -48,33 +51,40 @@ public class GalleryApp extends Application {
 
 
         HBox mun = new HBox(menu);
+
         VBox glass = new VBox(2, mun, new SearchBar(this), pane, new Progress());
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 
         Scene scene = new Scene(glass);
+
+
+
         stage.setMaxWidth(920);
         stage.setMaxHeight(600);
-        stage.setMinWidth(420);
+        stage.setMinWidth(50);
         stage.setMinHeight(400);
-        System.out.println(stage.getMinWidth());
+
+
+
         stage.setTitle("GalleryApp!");
         stage.setScene(scene);
-        stage.sizeToScene();
-
+        //stage.sizeToScene();
+        stage.setWidth(550);
 
         //stage.setMaximized(true);
         stage.show();
         //stage.setResizable(false);
-        } // start
+         // start
 
-    public void hbox(HBox box) {
+    }
+/*    public void hbox(HBox box) {
         for (int loop = 0; loop < 5; loop++) {
             Thumbnail icon = new Thumbnail();
             box.getChildren().add(icon);
             array[loop + 15] = icon;
         }
 
-    }
+        } */
 
 } // GalleryApp

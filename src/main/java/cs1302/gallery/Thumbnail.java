@@ -11,13 +11,11 @@ public class Thumbnail extends ImageView {
 
     public Thumbnail() {
         super();
-        img = new Image(DEFAULT_IMG, 125, 90, false, false);
+        img = new Image(DEFAULT_IMG, 145, 100, false, false);
         setImage(img);
-        //System.out.println(getFitWidth());
-        //System.out.println(getFitHeight());
-//        System.out.println(isPreserveRatio());
+        setFitWidth(145);
+        setFitHeight(100);
+
         setPreserveRatio(true);
-        //setFitWidth(100);
-        //setFitHeight(70);
     }
 }
