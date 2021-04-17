@@ -30,6 +30,7 @@ public class SearchBar extends HBox {
     JsonObject root;
     JsonArray results;
     Progress progress;
+    int bar = 0.05;
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -66,9 +67,9 @@ public class SearchBar extends HBox {
                 return;
             }
 
-            double bar = 0.05;
+
             for (loop = 0; loop < 20; loop++) {
-                uploadImages(loop, 20, results(address), (bar));
+                uploadImages(loop, results(address), (bar));
                 bar += .05;
             }
     } // search
@@ -80,16 +81,19 @@ public class SearchBar extends HBox {
         String dress = apple1 + "jack+harlow" + apple2;
         String ress = apple1 + "herro" + apple2;
         String ess = apple1 + "halsey" + apple2;
-//        try {
-        //uploadImages(0, 6, results(address));
-        //uploadImages(6, 8, results(adress));
-        //uploadImages(8, 10, results(dress));
-        //uploadImages(10, 18, results(ress));
-        //uploadImages(18, 20, results(ess));
+        bar = 0.05;
 
-            //      } catch (IOException ex) {
+        getImages(0, 6, results(address));
 
-            // } // try
+        getImages(6, 8, results(adress));
+
+        getImages(8, 10, results(dress));
+
+        getImages(10, 18, results(ress));
+
+        getImages(18, 20, results(ess));;
+
+
     } // Default()
 
 
@@ -110,7 +114,7 @@ public class SearchBar extends HBox {
 
         return results;
     }
-    public void uploadImages(int loop, int stop, JsonArray array, double bar) {
+    public void uploadImages(int start, JsonArray array, double bar) {
         String pi;
         Image pic;
         int percent;
@@ -126,6 +130,12 @@ public class SearchBar extends HBox {
             appl.array[loop].setImage(pic);
             progress.bar.setProgress(bar);
             });
+    }
+
+    public void getImages(int start, int stop, JsonArray results) {
+        for (start = start; start < stop; start++) {
+            uploadImages(start, results, bar);
+        }
     }
 
     public String  urlTrim(String url) {
