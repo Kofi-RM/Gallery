@@ -10,6 +10,8 @@ import javafx.scene.control.*;
 import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.geometry.Insets;
+import javafx.event.*;
+import javafx.scene.layout.BorderPane;
 
 /**
  * Represents an iTunes GalleryApp!
@@ -18,17 +20,26 @@ public class GalleryApp extends Application {
 
     public ImageView[] array = new ImageView[25];
     TilePane pane = new TilePane();
+    MenuBar menu = new MenuBar();
+    Menu music = new Menu("File");
+    HBox fileMenu;
+    MenuItem exit = new MenuItem("Exit");
+    BorderPane border = new BorderPane();
+    Progress progress = new Progress();
+
 
     /** {@inheritdoc} */
     @Override
     public void start(Stage stage) {
-
-        MenuBar menu = new MenuBar();
-        Menu music = new Menu("Find Music");
         menu.setMinWidth(920);
-        menu.setMaxWidth(1000);
+        music.getItems().add(exit);
+
+        music.setOnAction(e -> System.out.println("sex"));
+        music.fire();
+
         menu.getMenus().add(music);
 
+        border.setTop(menu);
 
         Thread task = new Thread(() -> {
             System.out.println("start");
@@ -47,20 +58,18 @@ public class GalleryApp extends Application {
             array[loop] = k;
         }
 
-
         System.out.println("yuo");
 
+        //HBox fileMenu = new HBox(menu);
 
-        HBox mun = new HBox(menu);
-
-        VBox glass = new VBox(2, mun, new SearchBar(this), pane, new Progress());
+        VBox glass = new VBox(2, border, new SearchBar(this ,progress), pane, progress);
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 
         Scene scene = new Scene(glass);
 
 
-
+        stage.setAlwaysOnTop(true);
         stage.setMaxWidth(920);
         stage.setMaxHeight(660);
         stage.setMinWidth(50);
@@ -77,6 +86,10 @@ public class GalleryApp extends Application {
         stage.show();
         //stage.setResizable(false);
          // start
+
+    }
+
+    public void setExit() {
 
     }
 

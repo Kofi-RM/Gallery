@@ -15,6 +15,6 @@ public class Progress extends HBox {
     public Progress() {
         super();
         getChildren().addAll(bar, text);
-        setAlignment(Pos.BOTTOM_CENTER);
+        setAlignment(Pos.BOTTOM_LEFT);
     }
 }

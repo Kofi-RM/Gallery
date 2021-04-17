@@ -29,12 +29,13 @@ public class SearchBar extends HBox {
     JsonElement jetson;
     JsonObject root;
     JsonArray results;
+    Progress progress;
 
-    public SearchBar(GalleryApp app) {
+    public SearchBar(GalleryApp app, Progress bar) {
         super(5);
 
         appl = app;
-
+        progress = bar;
         SearchBar.setMargin(pause, new Insets(5));
         SearchBar.setMargin(text, new Insets(8, 0, 5, 0));
         SearchBar.setMargin(url, new Insets(5, 0, 5, 0));
@@ -52,33 +53,21 @@ public class SearchBar extends HBox {
 
 
         String address = apple1 + urlMaker(url.getText())  + apple2;
-        try {
+        //try {
 
-            search = new URL(address);
-
-            reader = new InputStreamReader(search.openStream());
-            jetson = JsonParser.parseReader(reader);
-
-
-
-            root = jetson.getAsJsonObject();
-            results = root.getAsJsonArray("results");
-            int numImages = results.size();
-
-            System.out.println("images " + numImages);
+            int numImages = results(address).size();
 
             if (numImages == 0) {
+                System.out.println("images " + numImages);
                 return;
             }
 
 
-            uploadImages(0, 20, results);
+            uploadImages(0, 20, results(address));
 
-             } catch (IOException ex) {
-            System.out.println("no image");
-        } // try
-        System.out.println(address);
-        System.out.println(apple1 + "aries+welcome+home" + apple2);
+            //   } catch (IOException ex) {
+
+            //} // try
     } // search
 
     public void defaultSearch()  {
@@ -123,7 +112,12 @@ public class SearchBar extends HBox {
             String pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
             Image pic = new Image(pi);
+
+
             appl.array[loop].setImage(pic);
+            int percent = (int) (start + 1) / (stop - start);
+            Platform.runLater(() -> progress.bar.setProgress(percent));
+
         }
     }
 
