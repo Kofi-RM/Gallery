@@ -159,7 +159,7 @@ public class SearchBar extends HBox {
         }
 
         for (start = start; start < stop; start++) {
-            bar +=  (1/total);
+            bar +=  (1/20);
             System.out.println(bar + "barfdsa");
             uploadImages(start, results, bar);
         }
