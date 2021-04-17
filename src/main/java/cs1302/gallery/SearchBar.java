@@ -66,8 +66,10 @@ public class SearchBar extends HBox {
                 return;
             }
 
+            double bar = 0.05;
             for (loop = 0; loop < 20; loop++) {
-                uploadImages(loop, 20, results(address), (loop/20));
+                uploadImages(loop, 20, results(address), (bar));
+                bar += .05;
             }
     } // search
 
@@ -108,7 +110,7 @@ public class SearchBar extends HBox {
 
         return results;
     }
-    public void uploadImages(int loop, int stop, JsonArray array, int bar) {
+    public void uploadImages(int loop, int stop, JsonArray array, double bar) {
         String pi;
         Image pic;
         int percent;
