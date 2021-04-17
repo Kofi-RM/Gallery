@@ -11,7 +11,9 @@ import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.geometry.Insets;
 import javafx.event.*;
-import javafx.scene.layout.BorderPane;
+//import javafx.scene.layout.BorderPane;
+//import cs1302.p2.*;
+
 
 /**
  * Represents an iTunes GalleryApp!
@@ -34,7 +36,7 @@ public class GalleryApp extends Application {
         file.getItems().add(exit);
 
         exit.setOnAction(e -> System.exit(0));
-        //music.fire();
+        file.setOnAction( e ->  Platform.runLater(() -> file.show()));
 
         menu.getMenus().add(file);
 
