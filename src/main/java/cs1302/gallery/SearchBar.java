@@ -90,7 +90,8 @@ public class SearchBar extends HBox {
         try {
             getImages(0, 20, results(address), 20);
         } catch (IndexOutOfBoundsException io) {
-            getImages(0, 20, results(address), numImages);
+            System.out.println("images " + numImages);
+            getImages(0, numImages, results(address), numImages);
         }
     } // search
 
@@ -139,28 +140,29 @@ public class SearchBar extends HBox {
         Image pic;
         int percent;
 
-        //for (int loop = start; loop < stop; loop++) {
-            pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+        pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
-            pic = new Image(pi);
+        pic = new Image(pi);
 
-            Platform.runLater(() -> {
+        Platform.runLater(() -> {
             app.array[loop].setImage(pic);
-            //System.out.println(bar + " dfsa");
             progress.bar.setProgress(bar);
-            });
+        });
     }
 
     public void getImages(int start, int stop, JsonArray results, int total) {
-        double sum = 1 + progress.bar.getProgress();
-        if (sum > 1.04 ) {
+        double up = 1.0F * (1.0 / total);
+
+        if (bar > 1) {
             bar = 0;
             System.out.println("yooo");
         }
 
+        System.out.println("fs:" + stop);
+
         for (start = start; start < stop; start++) {
-            bar +=  (1/20);
-            System.out.println(bar + "barfdsa");
+            bar += .05;
+            System.out.println(bar + "barfdsa " + up);
             uploadImages(start, results, bar);
         }
     }
