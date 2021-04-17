@@ -13,7 +13,8 @@ import javafx.scene.image.*;
 import java.net.MalformedURLException;
 import java.io.IOException;
 import javafx.application.*;
-//import cs1302.p2.ArrayStringList;
+import java.util.ArrayList;
+
 
 public class SearchBar extends HBox {
 
@@ -22,9 +23,9 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=35&media=music";
+    String apple2 = "&limit=60&media=music";
     GalleryApp app;
-    String[] query = new String[35];
+    String[] query = new String[60];
     URL search;
     InputStreamReader reader;
     JsonElement jetson;
@@ -32,7 +33,6 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0.05;
-
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -75,16 +75,23 @@ public class SearchBar extends HBox {
             Platform.runLater(() -> app.file.show());
         }
 
-        int loop = 0;
+
         String address = apple1 + urlMaker(url.getText())  + apple2;
         int numImages = results(address).size();
 
         if (numImages == 0) {
             System.out.println("images " + numImages);
             return;
+        } else if (numImages > 20) {
+            for(int loop = 0; loop < numImages - 20; loop++) {
+                //query[loop] = ;
+            }
         }
-
-        getImages(0, 20, results(address));
+        try {
+            getImages(0, 20, results(address), 20);
+        } catch (IndexOutOfBoundsException io) {
+            getImages(0, 20, results(address), numImages);
+        }
     } // search
 
     public void defaultSearch()  {
@@ -96,15 +103,15 @@ public class SearchBar extends HBox {
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
-        getImages(0, 6, results(address));
+        getImages(0, 6, results(address), 20);
 
-        getImages(6, 8, results(adress));
+        getImages(6, 8, results(adress) , 20);
 
-        getImages(8, 10, results(dress));
+        getImages(8, 10, results(dress), 20);
 
-        getImages(10, 18, results(ress));
+        getImages(10, 18, results(ress), 20);
 
-        getImages(18, 20, results(ess));;
+        getImages(18, 20, results(ess), 20);;
 
 
     } // Default()
@@ -144,7 +151,7 @@ public class SearchBar extends HBox {
             });
     }
 
-    public void getImages(int start, int stop, JsonArray results) {
+    public void getImages(int start, int stop, JsonArray results, int total) {
         double sum = 1 + progress.bar.getProgress();
         if (sum > 1.04 ) {
             bar = 0;
@@ -152,7 +159,7 @@ public class SearchBar extends HBox {
         }
 
         for (start = start; start < stop; start++) {
-            bar +=  .05;
+            bar +=  (1/total);
             //System.out.println(bar);
             uploadImages(start, results, bar);
         }
@@ -190,5 +197,6 @@ public class SearchBar extends HBox {
         }
 
     }
+
 
 }
