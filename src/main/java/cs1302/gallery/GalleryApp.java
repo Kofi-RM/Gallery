@@ -26,6 +26,7 @@ public class GalleryApp extends Application {
     MenuItem exit = new MenuItem("Exit");
     BorderPane border = new BorderPane();
     Progress progress = new Progress();
+    Boolean play = true;
 
 
     /** {@inheritdoc} */
@@ -34,7 +35,7 @@ public class GalleryApp extends Application {
         menu.setMinWidth(920);
         music.getItems().add(exit);
 
-        music.setOnAction(e -> System.out.println("sex"));
+        {        music.setOnAction(e -> System.out.println("sex"));
         music.fire();
 
         menu.getMenus().add(music);
@@ -91,6 +92,10 @@ public class GalleryApp extends Application {
 
     public void setExit() {
 
+    }
+
+    public void changeMode() {
+        play = !play;
     }
 
 } // GalleryApp
