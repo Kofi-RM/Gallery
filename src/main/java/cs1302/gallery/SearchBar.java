@@ -22,7 +22,7 @@ public class SearchBar extends HBox {
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
     String apple2 = "&limit=35&media=music";
-    GalleryApp appl;
+    GalleryApp app;
     String[] query = new String[35];
     URL search;
     InputStreamReader reader;
@@ -35,7 +35,7 @@ public class SearchBar extends HBox {
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
 
-        appl = app;
+        this.app = app;
         progress = bar;
         SearchBar.setMargin(pause, new Insets(5));
         SearchBar.setMargin(text, new Insets(8, 0, 5, 0));
@@ -52,6 +52,11 @@ public class SearchBar extends HBox {
         pause.setOnAction(e -> {
             System.out.println(app.play);
             app.changeMode();
+            if (!app.play) {
+                pause.setText("Play");
+            } else {
+                pause.setText("Pause");
+            }
             System.out.println(app.play);
 
         });
@@ -61,6 +66,12 @@ public class SearchBar extends HBox {
     }
 
     public void search() {
+
+        if (urlMaker(url.getText()).equals("exit")) {
+            app.exit.fire();
+        } else if (urlMaker(url.getText()).equals("show")) {
+            Platform.runLater(() ->app.file.show());
+        }
 
         int loop = 0;
         String address = apple1 + urlMaker(url.getText())  + apple2;
@@ -125,7 +136,7 @@ public class SearchBar extends HBox {
             pic = new Image(pi);
 
             Platform.runLater(() -> {
-            appl.array[loop].setImage(pic);
+            app.array[loop].setImage(pic);
             //System.out.println(bar + " dfsa");
             progress.bar.setProgress(bar);
             });

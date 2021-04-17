@@ -21,10 +21,8 @@ public class GalleryApp extends Application {
     public ImageView[] array = new ImageView[25];
     TilePane pane = new TilePane();
     MenuBar menu = new MenuBar();
-    Menu music = new Menu("File");
-    HBox fileMenu;
+    Menu file = new Menu("File");
     MenuItem exit = new MenuItem("Exit");
-    BorderPane border = new BorderPane();
     Progress progress = new Progress();
     Boolean play = true;
 
@@ -33,14 +31,14 @@ public class GalleryApp extends Application {
     @Override
     public void start(Stage stage) {
         menu.setMinWidth(920);
-        music.getItems().add(exit);
+        file.getItems().add(exit);
 
-        music.setOnAction(e -> System.out.println("sex"));
-        music.fire();
+        exit.setOnAction(e -> System.exit(0));
+        //music.fire();
 
-        menu.getMenus().add(music);
+        menu.getMenus().add(file);
 
-        border.setTop(menu);
+        //border.setBottom(menu);
 
         Thread task = new Thread(() -> {
             System.out.println("start");
@@ -61,16 +59,15 @@ public class GalleryApp extends Application {
 
         System.out.println("yuo");
 
-        //HBox fileMenu = new HBox(menu);
 
-        VBox glass = new VBox(2, border, new SearchBar(this ,progress), pane, progress);
+        VBox glass = new VBox(2, menu, new SearchBar(this ,progress), pane, progress);
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 
         Scene scene = new Scene(glass);
 
 
-        stage.setAlwaysOnTop(true);
+        //stage.setAlwaysOnTop(true);
         stage.setMaxWidth(920);
         stage.setMaxHeight(660);
         stage.setMinWidth(50);
