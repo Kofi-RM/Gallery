@@ -18,6 +18,7 @@ public class GalleryApp extends Application {
 
     public ImageView[] array = new ImageView[25];
     TilePane pane = new TilePane();
+
     /** {@inheritdoc} */
     @Override
     public void start(Stage stage) {
@@ -33,7 +34,7 @@ public class GalleryApp extends Application {
             System.out.println("start");
             pane = new TilePane();
             pane.setPrefColumns(5);
-            pane.setPadding(new Insets(5));
+            pane.setPadding(new Insets(20));
 
             System.out.println("end");
         });
@@ -61,7 +62,7 @@ public class GalleryApp extends Application {
 
 
         stage.setMaxWidth(920);
-        stage.setMaxHeight(600);
+        stage.setMaxHeight(660);
         stage.setMinWidth(50);
         stage.setMinHeight(400);
 
@@ -71,20 +72,12 @@ public class GalleryApp extends Application {
         stage.setScene(scene);
         //stage.sizeToScene();
         stage.setWidth(550);
-
+        stage.setHeight(585);
         //stage.setMaximized(true);
         stage.show();
         //stage.setResizable(false);
          // start
 
     }
-/*    public void hbox(HBox box) {
-        for (int loop = 0; loop < 5; loop++) {
-            Thumbnail icon = new Thumbnail();
-            box.getChildren().add(icon);
-            array[loop + 15] = icon;
-        }
-
-        } */
 
 } // GalleryApp

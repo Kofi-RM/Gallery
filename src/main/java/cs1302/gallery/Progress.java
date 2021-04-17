@@ -5,7 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.ProgressBar;
-
+import javafx.geometry.Pos;
 
 public class Progress extends HBox {
 
@@ -15,5 +15,6 @@ public class Progress extends HBox {
     public Progress() {
         super();
         getChildren().addAll(bar, text);
+        setAlignment(Pos.BOTTOM_CENTER);
     }
 }
