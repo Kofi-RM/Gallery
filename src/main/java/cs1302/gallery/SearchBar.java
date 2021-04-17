@@ -54,7 +54,7 @@ public class SearchBar extends HBox {
 
     public void search() {
 
-
+        int loop = 0;
 
         String address = apple1 + urlMaker(url.getText())  + apple2;
         //try {
@@ -66,9 +66,9 @@ public class SearchBar extends HBox {
                 return;
             }
 
-
-            uploadImages(0, 20, results(address));
-
+            for (loop = 0; loop < 20; loop++) {
+                uploadImages(loop, 20, results(address), (loop/20));
+            }
     } // search
 
     public void defaultSearch()  {
@@ -79,11 +79,11 @@ public class SearchBar extends HBox {
         String ress = apple1 + "herro" + apple2;
         String ess = apple1 + "halsey" + apple2;
 //        try {
-            uploadImages(0, 6, results(address));
-            uploadImages(6, 8, results(adress));
-            uploadImages(8, 10, results(dress));
-            uploadImages(10, 18, results(ress));
-            uploadImages(18, 20, results(ess));
+        //uploadImages(0, 6, results(address));
+        //uploadImages(6, 8, results(adress));
+        //uploadImages(8, 10, results(dress));
+        //uploadImages(10, 18, results(ress));
+        //uploadImages(18, 20, results(ess));
 
             //      } catch (IOException ex) {
 
@@ -108,21 +108,22 @@ public class SearchBar extends HBox {
 
         return results;
     }
-    public void uploadImages(int start, int stop, JsonArray array) {
-        for (int loop = start; loop < stop; loop++) {
-            String pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+    public void uploadImages(int loop, int stop, JsonArray array, int bar) {
+        String pi;
+        Image pic;
+        int percent;
 
-            Image pic = new Image(pi);
-            int percent = (int) (start + 1) / (stop - start);
-            progress.bar.setProgress(percent);
+        //for (int loop = start; loop < stop; loop++) {
+            pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
-            while (start < loop) {
+            pic = new Image(pi);
+            //percent = (int) (start + 1) / (stop - start);
+            // progress.bar.setProgress(percent);
+
             Platform.runLater(() -> {
             appl.array[loop].setImage(pic);
-            //progress.bar.setProgress(percent);
+            progress.bar.setProgress(bar);
             });
-            }
-        }
     }
 
     public String  urlTrim(String url) {
