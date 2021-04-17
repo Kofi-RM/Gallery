@@ -13,7 +13,7 @@ import javafx.scene.image.*;
 import java.net.MalformedURLException;
 import java.io.IOException;
 import javafx.application.*;
-import cs1302.p2.ArrayStringList;
+//import cs1302.p2.ArrayStringList;
 
 public class SearchBar extends HBox {
 
@@ -32,7 +32,7 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0.05;
-    ArrayStringList bro = new ArrayStringList();
+
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
