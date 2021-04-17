@@ -114,11 +114,12 @@ public class SearchBar extends HBox {
 
             Image pic = new Image(pi);
             int percent = (int) (start + 1) / (stop - start);
+            progress.bar.setProgress(percent);
 
             while (start < loop) {
             Platform.runLater(() -> {
             appl.array[loop].setImage(pic);
-            progress.bar.setProgress(percent);
+            //progress.bar.setProgress(percent);
             });
             }
         }
