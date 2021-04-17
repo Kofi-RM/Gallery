@@ -48,6 +48,13 @@ public class SearchBar extends HBox {
             task.setDaemon(true);
             task.start();
         });
+
+        pause.setOnAction(e -> {
+            System.out.println(app.play);
+            app.changeMode();
+            System.out.println(app.play);
+
+        });
         getChildren().addAll(pause, text, url, update);
 
         defaultSearch();
@@ -116,11 +123,10 @@ public class SearchBar extends HBox {
             pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
             pic = new Image(pi);
-            System.out.println(progress.bar.getProgress());
 
             Platform.runLater(() -> {
             appl.array[loop].setImage(pic);
-            System.out.println(bar + " dfsa");
+            //System.out.println(bar + " dfsa");
             progress.bar.setProgress(bar);
             });
     }
