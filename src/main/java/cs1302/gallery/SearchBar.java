@@ -91,6 +91,9 @@ public class SearchBar extends HBox {
             getImages(0, 20, results(address), 20);
         } catch (IndexOutOfBoundsException io) {
             System.out.println("images " + numImages);
+
+            progress.bar.setProgress(0);
+            bar = 0;
             getImages(0, numImages, results(address), numImages);
         }
     } // search
