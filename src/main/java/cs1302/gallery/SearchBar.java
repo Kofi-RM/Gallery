@@ -30,7 +30,7 @@ public class SearchBar extends HBox {
     JsonObject root;
     JsonArray results;
     Progress progress;
-    int bar = 0.05;
+    double bar = 0.05;
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -56,22 +56,15 @@ public class SearchBar extends HBox {
     public void search() {
 
         int loop = 0;
-
         String address = apple1 + urlMaker(url.getText())  + apple2;
-        //try {
+        int numImages = results(address).size();
 
-            int numImages = results(address).size();
+        if (numImages == 0) {
+            System.out.println("images " + numImages);
+            return;
+        }
 
-            if (numImages == 0) {
-                System.out.println("images " + numImages);
-                return;
-            }
-
-
-            for (loop = 0; loop < 20; loop++) {
-                uploadImages(loop, results(address), (bar));
-                bar += .05;
-            }
+        getImages(0, 20, results(address));
     } // search
 
     public void defaultSearch()  {
@@ -114,7 +107,7 @@ public class SearchBar extends HBox {
 
         return results;
     }
-    public void uploadImages(int start, JsonArray array, double bar) {
+    public void uploadImages(int loop, JsonArray array, double bar) {
         String pi;
         Image pic;
         int percent;
