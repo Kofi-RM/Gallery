@@ -41,8 +41,12 @@ public class SearchBar extends HBox {
         SearchBar.setMargin(url, new Insets(5, 0, 5, 0));
         SearchBar.setMargin(update, new Insets(5, 5, 5, 0));
 
-        update.setOnAction(e -> search());
+        update.setOnAction(e ->  {
 
+            Thread task = new Thread (() -> search());
+            task.setDaemon(true);
+            task.start();
+        });
         getChildren().addAll(pause, text, url, update);
 
         defaultSearch();
@@ -65,9 +69,6 @@ public class SearchBar extends HBox {
 
             uploadImages(0, 20, results(address));
 
-            //   } catch (IOException ex) {
-
-            //} // try
     } // search
 
     public void defaultSearch()  {
@@ -112,12 +113,14 @@ public class SearchBar extends HBox {
             String pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
 
             Image pic = new Image(pi);
-
-
-            appl.array[loop].setImage(pic);
             int percent = (int) (start + 1) / (stop - start);
-            Platform.runLater(() -> progress.bar.setProgress(percent));
 
+            while (start < loop) {
+            Platform.runLater(() -> {
+            appl.array[loop].setImage(pic);
+            progress.bar.setProgress(percent);
+            });
+            }
         }
     }
 
