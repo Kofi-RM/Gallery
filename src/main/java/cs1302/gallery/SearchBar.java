@@ -25,7 +25,6 @@ public class SearchBar extends HBox {
     String apple1 = "https://itunes.apple.com/search?term=";
     String apple2 = "&limit=60&media=music";
     GalleryApp app;
-    String[] query = new String[60];
     URL search;
     InputStreamReader reader;
     JsonElement jetson;
@@ -33,6 +32,7 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0.05;
+    ArrayList<String> query = new ArrayList(60);
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -203,5 +203,10 @@ public class SearchBar extends HBox {
 
     }
 
+    public void setQuery(JsonArray results) {
+        for (int loop = 0; loop < 60; loop++) {
+            query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+        }
+    }
 
 }
