@@ -75,6 +75,7 @@ public class SearchBar extends HBox {
             Platform.runLater(() -> app.file.show());
         }
 
+        Platform.runLater(() -> progress.bar.setProgress(0.0));
 
         String address = apple1 + urlMaker(url.getText())  + apple2;
         int numImages = results(address).size();
@@ -88,6 +89,11 @@ public class SearchBar extends HBox {
             }
         }
         try {
+
+            if (results.size() < 20) {
+                throw new IndexOutOfBoundsException();
+            }
+
             getImages(0, 20, results(address), 20);
         } catch (IndexOutOfBoundsException io) {
             System.out.println("images " + numImages);
@@ -133,7 +139,7 @@ public class SearchBar extends HBox {
 
 
         } catch (IOException ex){
-            System.out.println("YES HARDER DADDY");
+            System.out.println("change this when you can");
         }
 
         return results;
@@ -156,6 +162,10 @@ public class SearchBar extends HBox {
     public void getImages(int start, int stop, JsonArray results, int total) {
         double up = 1.0F * (1.0 / total);
 
+        //if (results.size() < 20) {
+        //throw new IndexOutOfBoundsException();
+        // }
+
         if (bar > 1) {
             bar = 0;
             System.out.println("yooo");
@@ -164,7 +174,7 @@ public class SearchBar extends HBox {
         System.out.println("fs:" + stop);
 
         for (start = start; start < stop; start++) {
-            bar += .05;
+            bar += up;
             System.out.println(bar + "barfdsa " + up);
             uploadImages(start, results, bar);
         }
@@ -209,4 +219,20 @@ public class SearchBar extends HBox {
         }
     }
 
-}
+    public void deleteRepeats(ArrayList<String> query) {
+        int loop1 = 0;
+        int loop2 = 0;
+
+        String string1 = query.get(loop1);
+        String string2 = query.get(loop2);
+
+        for (loop1 = 0; loop1 < 60; loop1++) {
+            for (loop2 = 0; loop2 < 60; loop2++) {
+                if (string1.equals(string2)) {
+                    query.remove(loop2);
+                } // if
+            } // nested for
+        } // for
+    } // deleteRepeats
+
+} //SearchBar
