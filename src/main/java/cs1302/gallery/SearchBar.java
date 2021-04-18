@@ -32,13 +32,14 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0.05;
-    ArrayList<String> query = new ArrayList(60);
+    ArrayList<String> query1 = new ArrayList<String>(60);
+    ArrayList<String> query2 = new ArrayList<String>(60);
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
 
-        this.app = app;
-        progress = bar;
+        this.app = app; // loads instance of GalleryApp calling SearchBar into it
+        progress = bar; // loads Progress of GalleryApp in
         SearchBar.setMargin(pause, new Insets(5));
         SearchBar.setMargin(text, new Insets(8, 0, 5, 0));
         SearchBar.setMargin(url, new Insets(5, 0, 5, 0));
@@ -49,7 +50,7 @@ public class SearchBar extends HBox {
             Thread task = new Thread (() -> search());
             task.setDaemon(true);
             task.start();
-        });
+        }); // searches on a new thread on button press
 
         pause.setOnAction(e -> {
             System.out.println(app.play);
@@ -61,11 +62,13 @@ public class SearchBar extends HBox {
             }
             System.out.println(app.play);
 
-        });
+        }); // play/pauses on button press
+
         getChildren().addAll(pause, text, url, update);
 
         defaultSearch();
-    }
+        System.out.println(query1.size() + " size");
+    } // SearchBar() constructor
 
     public void search() {
 
@@ -73,27 +76,31 @@ public class SearchBar extends HBox {
             app.exit.fire();
         } else if (urlMaker(url.getText()).equals("show")) {
             Platform.runLater(() -> app.file.show());
-        }
+        } // can type commands
 
-        Platform.runLater(() -> progress.bar.setProgress(0.0));
+        Platform.runLater(() -> progress.bar.setProgress(0.0)); // resets progress bar on new search
 
-        String address = apple1 + urlMaker(url.getText())  + apple2;
-        int numImages = results(address).size();
+        String address = apple1 + urlMaker(url.getText())  + apple2; // makes address
+        int numImages = results(address).size(); // number of search results
 
         if (numImages == 0) {
             System.out.println("images " + numImages);
             return;
         } else if (numImages > 20) {
-            for(int loop = 0; loop < numImages - 20; loop++) {
+            //for(int loop = 0; loop < numImages - 20; loop++) {
                 //query[loop] = ;
-            }
-        }
+            setQuery(query1, results);
+
+            } // else
+
+
         try {
 
             if (results.size() < 20) {
                 throw new IndexOutOfBoundsException();
-            }
+            } // passes over next line to catch if size < 20
 
+            System.out.println("images " + numImages);
             getImages(0, 20, results(address), 20);
         } catch (IndexOutOfBoundsException io) {
             System.out.println("images " + numImages);
@@ -102,7 +109,7 @@ public class SearchBar extends HBox {
             bar = 0;
             getImages(0, numImages, results(address), numImages);
         }
-    } // search
+    } // search()
 
     public void defaultSearch()  {
 
@@ -114,17 +121,11 @@ public class SearchBar extends HBox {
         bar = 0;
 
         getImages(0, 6, results(address), 20);
-
         getImages(6, 8, results(adress) , 20);
-
         getImages(8, 10, results(dress), 20);
-
         getImages(10, 18, results(ress), 20);
-
         getImages(18, 20, results(ess), 20);;
-
-
-    } // Default()
+    } // defaultSearch()
 
 
     public JsonArray results(String address) {
@@ -143,7 +144,8 @@ public class SearchBar extends HBox {
         }
 
         return results;
-    }
+    } // results(String address)
+
     public void uploadImages(int loop, JsonArray array, double bar) {
         String pi;
         Image pic;
@@ -156,15 +158,12 @@ public class SearchBar extends HBox {
         Platform.runLater(() -> {
             app.array[loop].setImage(pic);
             progress.bar.setProgress(bar);
-        });
-    }
+        }); // sets image and progress bar
+    } // uploadImages()
 
     public void getImages(int start, int stop, JsonArray results, int total) {
         double up = 1.0F * (1.0 / total);
 
-        //if (results.size() < 20) {
-        //throw new IndexOutOfBoundsException();
-        // }
 
         if (bar > 1) {
             bar = 0;
@@ -175,16 +174,15 @@ public class SearchBar extends HBox {
 
         for (start = start; start < stop; start++) {
             bar += up;
-            System.out.println(bar + "barfdsa " + up);
             uploadImages(start, results, bar);
         }
-    }
+    } // getImages()
 
     public String  urlTrim(String url) {
         String trim;
         trim = url.substring(1, url.length() - 1);
         return trim;
-    }
+    } // urlTrim(String url)
 
     public String  urlMaker(String textBox) {
         Scanner input = new Scanner(url.getText());
@@ -194,7 +192,7 @@ public class SearchBar extends HBox {
         while(input.hasNext() == true) {
             number++;
             input.next();
-        }
+        } // while
 
         if (number == 1) {
             return text;
@@ -211,13 +209,13 @@ public class SearchBar extends HBox {
             return "";
         }
 
-    }
+    } // urlMaker(String textBox)
 
-    public void setQuery(JsonArray results) {
+    public void setQuery(ArrayList<String> query, JsonArray results) {
         for (int loop = 0; loop < 60; loop++) {
             query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
         }
-    }
+    } // setQuery()
 
     public void deleteRepeats(ArrayList<String> query) {
         int loop1 = 0;
@@ -226,13 +224,13 @@ public class SearchBar extends HBox {
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
 
-        for (loop1 = 0; loop1 < 60; loop1++) {
-            for (loop2 = 0; loop2 < 60; loop2++) {
+        for (loop1 = 0; loop1 < query.size(); loop1++) {
+            for (loop2 = 0; loop2 < query.size(); loop2++) {
                 if (string1.equals(string2)) {
                     query.remove(loop2);
                 } // if
             } // nested for
         } // for
-    } // deleteRepeats
+    } // deleteRepeats()
 
 } //SearchBar
