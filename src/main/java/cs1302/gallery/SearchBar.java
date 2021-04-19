@@ -14,7 +14,8 @@ import java.net.MalformedURLException;
 import java.io.IOException;
 import javafx.application.*;
 import java.util.ArrayList;
-
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 
 public class SearchBar extends HBox {
 
@@ -94,21 +95,28 @@ public class SearchBar extends HBox {
             } // else
 
 
-        try {
+        //try {
 
             if (results.size() < 20) {
-                throw new IndexOutOfBoundsException();
-            } // passes over next line to catch if size < 20
+                Platform.runLater (() -> {
+                    Alert halt = new Alert(AlertType.ERROR);
+                    halt.setHeaderText("Invalid search");
+                    halt.setContentText("Less than 20 artworks found");
+                    halt.showAndWait();
+
+                });
+            } else {
 
             System.out.println("images " + numImages);
             getImages(0, 20, results(address), 20);
-        } catch (IndexOutOfBoundsException io) {
+            }
+            /*} catch (IndexOutOfBoundsException io) {
             System.out.println("images " + numImages);
 
             progress.bar.setProgress(0);
             bar = 0;
             getImages(0, numImages, results(address), numImages);
-        }
+            }*/ // changing it to make it alert if less than 20 images
     } // search()
 
     public void defaultSearch()  {
