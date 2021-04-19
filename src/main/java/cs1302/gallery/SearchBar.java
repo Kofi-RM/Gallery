@@ -100,10 +100,14 @@ public class SearchBar extends HBox {
             } else {
 
                 setQuery(query1, results, 0, 20);
-                deleteRepeats(query1);
+                //deleteRepeats(query1);
                 setQuery(query2, results, 20, 60);
-                deleteRepeats(query2);
+                // deleteRepeats(query2);
                 getImages(0, 20, query1, 20);
+
+                for (int loop = 0; loop < 20; loop++) {
+                    System.out.println(query1.get(loop));
+                }
             }
     } // search()
 
@@ -153,12 +157,12 @@ public class SearchBar extends HBox {
         pic = new Image(pi);
 
         Platform.runLater(() -> {
-            app.array[loop].setImage(pic);
+            //app.array[loop].setImage(pic);
             progress.bar.setProgress(bar);
         }); // sets image and progress bar
     } // uploadImages()
 
-    public void getImages(int start, int stop, ArrayList<String> array, int total) {
+    public void getImages(int start, int stop, ArrayList<String> results, int total) {
         double up = 1.0F * (1.0 / total);
 
         images.clear();
@@ -173,8 +177,18 @@ public class SearchBar extends HBox {
             bar += up;
             uploadImages(start, results, bar);
         }
+
+        for (start = start; start < stop; start++) {
+            setImages(start);
+        }
+
     } // getImages()
 
+    public void setImages(int loop) {
+        Platform.runLater(() -> {
+            app.array[loop].setImage(images.get(loop));
+        });
+    }
     public String  urlTrim(String url) {
         String trim;
         trim = url.substring(1, url.length() - 1);
