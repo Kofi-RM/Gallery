@@ -87,7 +87,7 @@ public class SearchBar extends HBox {
 
 
             if (results.size() < 20) {
-                Platform.runLater (() -> {
+                /*Platform.runLater (() -> {
                     Alert halt = new Alert(AlertType.ERROR);
                     halt.setHeaderText("Invalid search");
                     halt.setContentText("Less than 20 artworks found");
@@ -95,8 +95,9 @@ public class SearchBar extends HBox {
                     halt.setHeight(200);
                     halt.setWidth(200);
 
-                    halt.showAndWait();
-                });
+                    halt.showAndWait();*/
+                alert();
+                // });
             } else {
 
                 setQuery(query1, results, 0, 20);
@@ -109,14 +110,28 @@ public class SearchBar extends HBox {
                     System.out.println(query1.size());;
                     System.out.println(query1.get(loop));
                  }
-
-                setQuery(query2, results, 20, 60);
+                if (query1.size() < 20 ) {
+                    alert();
+                } else
+                // setQuery(query2, results, 20, 60);
                 // deleteRepeats(query2);
                 getImages(0, query1.size(), query1, query1.size());
-
             }
-    } // search()
+    }
 
+
+    public void alert() {
+        Platform.runLater (() -> {
+            Alert halt = new Alert(AlertType.ERROR);
+            halt.setHeaderText("Invalid search");
+            halt.setContentText("Less than 20 artworks found");
+            halt.setResizable(true);
+            halt.setHeight(200);
+            halt.setWidth(200);
+            halt.showAndWait();
+        });
+
+    }
     public void defaultSearch()  {
 
         String address = apple1 + "aries" + apple2;
@@ -261,12 +276,12 @@ public class SearchBar extends HBox {
                  System.out.println("remove it " + string2);
              }
 
-            System.out.println("loop1 " + loop1 + " string1 " + string1);
-            System.out.println("loop2 " + loop2 + " string2 " + string2);
+                //System.out.println("loop1 " + loop1 + " string1 " + string1);
+                //System.out.println("loop2 " + loop2 + " string2 " + string2);
             }
         }
         }catch (IndexOutOfBoundsException io) {
-            System.out.println("catch");
+            //System.out.println("catch");
             return;
         }
 
