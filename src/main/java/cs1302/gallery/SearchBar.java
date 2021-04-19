@@ -100,14 +100,20 @@ public class SearchBar extends HBox {
             } else {
 
                 setQuery(query1, results, 0, 20);
-                //deleteRepeats(query1);
-                setQuery(query2, results, 20, 60);
-                // deleteRepeats(query2);
-                getImages(0, 20, query1, 20);
-
                 for (int loop = 0; loop < 20; loop++) {
                     System.out.println(query1.get(loop));
                 }
+
+                deleteRepeats(query1);
+                for (int loop = 0; loop < query1.size(); loop++) {
+                    System.out.println(query1.size());;
+                    System.out.println(query1.get(loop));
+                 }
+
+                setQuery(query2, results, 20, 60);
+                // deleteRepeats(query2);
+                getImages(0, query1.size(), query1, query1.size());
+
             }
     } // search()
 
