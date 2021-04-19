@@ -237,9 +237,17 @@ public class SearchBar extends HBox {
 
         for (loop1 = 0; loop1 < query.size(); loop1++) {
             for (loop2 = 0; loop2 < query.size(); loop2++) {
+
+                if (loop1 == loop2 && loop1 < query.size() - 1) {
+                    loop++;
+                } else if (loop1 == loop2 && loop1 == query.size() - 1) {
+                    return;
+                }
+
                 if (string1.equals(string2)) {
                     query.remove(loop2);
-                } // if
+                }
+
             } // nested for
         } // for
     } // deleteRepeats()
