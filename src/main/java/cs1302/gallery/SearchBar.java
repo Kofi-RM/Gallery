@@ -35,6 +35,7 @@ public class SearchBar extends HBox {
     double bar = 0.05;
     ArrayList<String> query1 = new ArrayList<String>(60);
     ArrayList<String> query2 = new ArrayList<String>(60);
+    ArrayList<Image> images = new ArrayList<Image>(20);
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -84,18 +85,6 @@ public class SearchBar extends HBox {
         String address = apple1 + urlMaker(url.getText())  + apple2; // makes address
         int numImages = results(address).size(); // number of search results
 
-        if (numImages == 0) {
-            System.out.println("images " + numImages);
-            return;
-        } else if (numImages > 20) {
-            //for(int loop = 0; loop < numImages - 20; loop++) {
-                //query[loop] = ;
-            setQuery(query1, results);
-
-            } // else
-
-
-        //try {
 
             if (results.size() < 20) {
                 Platform.runLater (() -> {
@@ -110,16 +99,12 @@ public class SearchBar extends HBox {
                 });
             } else {
 
-            System.out.println("images " + numImages);
-            getImages(0, 20, results(address), 20);
+                setQuery(query1, results, 0, 20);
+                deleteRepeats(query1);
+                setQuery(query2, results, 20, 60);
+                deleteRepeats(query2);
+                getImages(0, 20, query1, 20);
             }
-            /*} catch (IndexOutOfBoundsException io) {
-            System.out.println("images " + numImages);
-
-            progress.bar.setProgress(0);
-            bar = 0;
-            getImages(0, numImages, results(address), numImages);
-            }*/ // changing it to make it alert if less than 20 images
     } // search()
 
     public void defaultSearch()  {
@@ -131,11 +116,12 @@ public class SearchBar extends HBox {
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
+        /*setQuery(query1, results, 0, 6);
         getImages(0, 6, results(address), 20);
         getImages(6, 8, results(adress) , 20);
         getImages(8, 10, results(dress), 20);
         getImages(10, 18, results(ress), 20);
-        getImages(18, 20, results(ess), 20);;
+        getImages(18, 20, results(ess), 20);;*/
     } // defaultSearch()
 
 
@@ -157,12 +143,12 @@ public class SearchBar extends HBox {
         return results;
     } // results(String address)
 
-    public void uploadImages(int loop, JsonArray array, double bar) {
+    public void uploadImages(int loop, ArrayList<String> array, double bar) {
         String pi;
         Image pic;
         int percent;
 
-        pi = urlTrim(array.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+        pi = urlTrim(array.get(loop));
 
         pic = new Image(pi);
 
@@ -172,10 +158,10 @@ public class SearchBar extends HBox {
         }); // sets image and progress bar
     } // uploadImages()
 
-    public void getImages(int start, int stop, JsonArray results, int total) {
+    public void getImages(int start, int stop, ArrayList<String> array, int total) {
         double up = 1.0F * (1.0 / total);
 
-
+        images.clear();
         if (bar > 1) {
             bar = 0;
             System.out.println("yooo");
@@ -222,8 +208,8 @@ public class SearchBar extends HBox {
 
     } // urlMaker(String textBox)
 
-    public void setQuery(ArrayList<String> query, JsonArray results) {
-        for (int loop = 0; loop < 60; loop++) {
+    public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
+        for (int loop = start; loop < stop; loop++) {
             query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
         }
     } // setQuery()
@@ -239,7 +225,7 @@ public class SearchBar extends HBox {
             for (loop2 = 0; loop2 < query.size(); loop2++) {
 
                 if (loop1 == loop2 && loop1 < query.size() - 1) {
-                    loop++;
+                    loop2++;
                 } else if (loop1 == loop2 && loop1 == query.size() - 1) {
                     return;
                 }
