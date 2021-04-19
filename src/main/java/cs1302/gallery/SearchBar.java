@@ -102,8 +102,11 @@ public class SearchBar extends HBox {
                     Alert halt = new Alert(AlertType.ERROR);
                     halt.setHeaderText("Invalid search");
                     halt.setContentText("Less than 20 artworks found");
-                    halt.showAndWait();
+                    halt.setResizable(true);
+                    halt.setHeight(200);
+                    halt.setWidth(200);
 
+                    halt.showAndWait();
                 });
             } else {
 
