@@ -240,22 +240,36 @@ public class SearchBar extends HBox {
 
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
+        System.out.println("query size " + query.size());
 
+        try {
         for (loop1 = 0; loop1 < query.size(); loop1++) {
             for (loop2 = 0; loop2 < query.size(); loop2++) {
 
-                if (loop1 == loop2 && loop1 < query.size() - 1) {
+                if (loop1 == 0 && loop2 == 0) {
                     loop2++;
-                } else if (loop1 == loop2 && loop1 == query.size() - 1) {
-                    return;
+                } else if (loop1 == loop2) { // && loop1) //< query.size() - 1) {
+                    loop2++;
                 }
+
+                string1 = query.get(loop1);
+                string2 = query.get(loop2);
+
 
                 if (string1.equals(string2)) {
-                    query.remove(loop2);
-                }
+                 query.remove(loop2);
+                 System.out.println("remove it " + string2);
+             }
 
-            } // nested for
-        } // for
-    } // deleteRepeats()
+            System.out.println("loop1 " + loop1 + " string1 " + string1);
+            System.out.println("loop2 " + loop2 + " string2 " + string2);
+            }
+        }
+        }catch (IndexOutOfBoundsException io) {
+            System.out.println("catch");
+            return;
+        }
+
+    }    // deleteRepeats()
 
 } //SearchBar
