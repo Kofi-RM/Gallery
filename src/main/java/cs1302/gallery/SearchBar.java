@@ -155,7 +155,7 @@ public class SearchBar extends HBox {
         pi = urlTrim(array.get(loop));
 
         pic = new Image(pi);
-
+        images.add(pic);
         Platform.runLater(() -> {
             //app.array[loop].setImage(pic);
             progress.bar.setProgress(bar);
@@ -178,7 +178,7 @@ public class SearchBar extends HBox {
             uploadImages(start, results, bar);
         }
 
-        for (start = start; start < stop; start++) {
+        for (start = 0; start < stop; start++) {
             setImages(start);
         }
 
