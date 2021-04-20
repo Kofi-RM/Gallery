@@ -24,7 +24,7 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=80&media=music";
+    String apple2 = "&limit=300&media=music";
     GalleryApp app;
     URL search;
     InputStreamReader reader;
@@ -92,14 +92,7 @@ public class SearchBar extends HBox {
                 alert();
             } else {
 
-                //if (results.size() > 300) {
                     setQuery(query1, results, 0, 300);
-                    //} else {
-                    //setQuery(query1, results, 0, results.size());
-                    //}
-                //for (int loop = 0; loop < 300; loop++) {
-                //  System.out.println(query1.get(loop));
-                //}
 
                 deleteRepeats(query1);
                 for (int loop = 0; loop < query1.size(); loop++) {
@@ -131,23 +124,28 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
 
-        String address = apple1 + "aries+welcome+home" + apple2;
+        String address = apple1 + "aries" + apple2;
         String adress = apple1 + "post+malone" + apple2;
         String dress = apple1 + "jack+harlow" + apple2;
         String ress = apple1 + "herro" + apple2;
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
-        results(address);
-        setQuery(query1, results, 0, 150);
-        deleteRepeats(query1);
+        defaultHelp(1, 0, 3, results(address));
+        defaultHelp(1, 1, 3, results(address));
 
-        System.out.println("query size " + query1.size());
-        for (int loop = 0; loop < query1.size(); loop++) {
-            System.out.println("query after " + query1.get(loop));
-        }
+        //results(address);
+        //setQuery(query1, results, 0, 150);
+        //deleteRepeats(query1);
 
-        getImages(0, 5, query1, 5);
+        //System.out.println("query size " + query1.size());
+        //for (int loop = 0; loop < query1.size(); loop++) {
+        //  System.out.println("query after " + query1.get(loop));
+        // }
+
+            //setImagesRange(0, 3);
+
+        //getImages(0, 20, query1, 20);
         //getImages(6, 8, results(adress) , 20);
         //getImages(8, 10, results(dress), 20);
         // getImages(10, 18, results(ress), 20);
@@ -155,9 +153,15 @@ public class SearchBar extends HBox {
 
     } // defaultSearch()
 
-    public void defaultHelp(int start, int stop) {
-        setQuery(query1, results, start, stop);
-
+    public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
+        setQuery(query1, results, 0, 150);
+        deleteRepeats(query1);
+        getImages(0, query1.size(), query1, query1.size());
+        for (int loop = 0; loop < cycles; loop++) {
+        setImagesRange(tileStart, imageStart);
+        tileStart++;
+        imageStart++;
+        }
     }
 
     public JsonArray results(String address) {
@@ -230,17 +234,17 @@ public class SearchBar extends HBox {
     } // getImages()
 
     public void setImages(int loop, int diff) {
-
-//        diff = loop - diff;
         Platform.runLater(() -> {
             app.array[loop].setImage(images.get(diff));
         });
     }
 
-//    public void setAll(int start, int stop) {
+    public void setImagesRange(int loop, int start) {
+        Platform.runLater(() -> {
+            app.array[loop].setImage(images.get(start));
+        });
+    }
 
-
-    //  }
     public String  urlTrim(String url) {
         String trim;
         trim = url.substring(1, url.length() - 1);
@@ -319,8 +323,8 @@ public class SearchBar extends HBox {
                  loop2--;
              }
 
-                System.out.println("loop1 " + loop1 + " string1 " + string1);
-                System.out.println("loop2 " + loop2 + " string2 " + string2);
+                //System.out.println("loop1 " + loop1 + " string1 " + string1);
+                //System.out.println("loop2 " + loop2 + " string2 " + string2);
                 System.out.println(query.size());
             }
         }

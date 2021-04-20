@@ -45,7 +45,7 @@ public class GalleryApp extends Application {
 
         Thread task = new Thread(() -> {
             System.out.println("start");
-            pane = new TilePane();
+            //pane = new TilePane();
             pane.setPrefColumns(5);
             pane.setPadding(new Insets(20));
 
