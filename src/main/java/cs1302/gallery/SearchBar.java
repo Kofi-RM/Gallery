@@ -24,7 +24,7 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=300&media=music";
+    String apple2 = "&limit=80&media=music";
     GalleryApp app;
     URL search;
     InputStreamReader reader;
@@ -131,7 +131,7 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
 
-        String address = apple1 + "aries" + apple2;
+        String address = apple1 + "aries+welcome+home" + apple2;
         String adress = apple1 + "post+malone" + apple2;
         String dress = apple1 + "jack+harlow" + apple2;
         String ress = apple1 + "herro" + apple2;
@@ -140,6 +140,7 @@ public class SearchBar extends HBox {
 
         results(address);
         setQuery(query1, results, 0, 150);
+        deleteRepeats(query1);
         getImages(0, 6, query1, 6);
         //getImages(6, 8, results(adress) , 20);
         //getImages(8, 10, results(dress), 20);
@@ -189,8 +190,11 @@ public class SearchBar extends HBox {
     public void getImages(int start, int stop, ArrayList<String> results, int total) {
         double up = 1.0F * (1.0 / total);
         int originalStart = start;
+        int counter = 0;
+        int diff = 0;
 
         images.clear();
+
         if (bar > 1) {
             bar = 0;
             System.out.println("yooo");
@@ -203,15 +207,26 @@ public class SearchBar extends HBox {
             uploadImages(start, results, bar);
         }
 
-        for (start = originalStart; start < 20; start++) {
-            setImages(start);
+        if (stop > 20) {
+            stop = 20;
+        }
+        for (start = originalStart; start < stop; start++) {
+            if (counter == 0) {
+                diff = start;
+            }
+            diff = start - diff;
+
+            setImages(start, diff);
+            counter++;
         }
 
     } // getImages()
 
-    public void setImages(int loop) {
+    public void setImages(int loop, int diff) {
+
+//        diff = loop - diff;
         Platform.runLater(() -> {
-            app.array[loop].setImage(images.get(loop));
+            app.array[loop].setImage(images.get(diff));
         });
     }
 
@@ -293,8 +308,9 @@ public class SearchBar extends HBox {
                  System.out.println("remove it " + string2);
              }
 
-                //System.out.println("loop1 " + loop1 + " string1 " + string1);
-                //System.out.println("loop2 " + loop2 + " string2 " + string2);
+                System.out.println("loop1 " + loop1 + " string1 " + string1);
+                System.out.println("loop2 " + loop2 + " string2 " + string2);
+                System.out.println(query.size());
             }
         }
         }catch (IndexOutOfBoundsException io) {
