@@ -127,21 +127,27 @@ public class SearchBar extends HBox {
         String address = apple1 + "aries" + apple2;
         String adress = apple1 + "post+malone" + apple2;
         String dress = apple1 + "jack+harlow" + apple2;
-        String ress = apple1 + "herro" + apple2;
-        String ess = apple1 + "halsey" + apple2;
+        String ress = apple1 + "kid+laroi" + apple2;
+        String ess = apple1 + "alexander+hamilton" + apple2;
         bar = 0;
 
         defaultHelp(3, 0, 3, results(address));
         imgRngLooper(1, 3, 7);
         imgRngLooper(3, 4 , 12);
 
-        defaultHelp(1, 7, 2, results(ess));
+        defaultHelp(0,0 , 0, results(adress));
+        imgRngLooper(1, 7, 1);
+        imgRngLooper(3, 8, 4);
 
-        //defaultHelp(1, 7, 1, results(ress));
-        //getImages(8, 10, results(dress), 20);
-        // getImages(10, 18, results(ress), 20);
-        // getImages(18, 20, results(ess), 20);;*/
+        defaultHelp(0, 0, 0, results(dress));
+        imgRngLooper(3, 11, 14);
+        imgRngLooper(1, 14 , 19);
 
+        defaultHelp(0, 0, 0, results(ress));
+        imgRngLooper(2, 15, 5);
+
+        defaultHelp(0, 0, 0, results(ess));
+        imgRngLooper(1, 17, 1);
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
@@ -150,7 +156,7 @@ public class SearchBar extends HBox {
         System.out.println();
         for (int loop = 0; loop < query1.size(); loop++) {
 
-            System.out.println(query1.get(loop) + " size " + query1.size());
+            //System.out.println(query1.get(loop) + " size " + query1.size());
         }
 
         defaultGetImages(tileStart, query1.size() - 1, imageStart);
