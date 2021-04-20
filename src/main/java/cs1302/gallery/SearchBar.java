@@ -91,7 +91,7 @@ public class SearchBar extends HBox {
         int rand2 = (int)Math.round(Math.random() * (query1.size() - 20) + 20);
         //if (theDefault) {
         //  rand2 = (int)Math.round(Math.random() * 20);
-        //  setImages(rand1, rand2);
+        setImages(rand1, rand2);
         //}
     }
     public void search() {
@@ -137,9 +137,9 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
         String j = apple1 + "juice+wrld" + apple2;
+
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
         "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
-
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
         "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg");
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/36/d7/b7/" +
@@ -148,49 +148,34 @@ public class SearchBar extends HBox {
         "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg");
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/2c/60/97/" +
         "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg");
-
         initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/4b/36/41/" +
         "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg");
-
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ce/06/50/" +
         "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg");
-
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/36/9b/a2/" +
         "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg");
-
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/50/8d/91/"
         + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg");
-
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
-
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5e/4f/1e/" +
             "5e4f1e69-20f7-e210-de36-0b6d89b36ca9/source/100x100bb.jpg");
-
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/89/70/79/" +
             "89707908-0f16-817d-1d59-27dc803952ee/source/100x100bb.jpg");
-
         initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/ca/84/5f/" +
             "ca845f3c-1776-a6c0-c5d2-3246c8f89777/source/100x100bb.jpg");
-
         initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/70/7e/13/" +
             "707e13d5-6452-e874-8069-26e7a9864566/source/100x100bb.jpg");
-
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/de/e5/02/" +
             "dee50251-b193-df0e-255f-079787e50b4e/source/100x100bb.jpg");
-
         initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/73/f0/0d/" +
             "73f00d56-8021-dd5e-f209-eb385ce1560b/source/100x100bb.jpg");
-
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/da/eb/51/" +
             "daeb5176-01f1-2850-3913-28bcb9864736/source/100x100bb.jpg");
-
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/77/75/25/" +
             "777525b4-7579-0e68-6022-890360c967cc/source/100x100bb.jpg");
-
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
-
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
             "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg");
 
