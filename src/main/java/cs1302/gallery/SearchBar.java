@@ -119,7 +119,7 @@ public class SearchBar extends HBox {
                 } else
                 // setQuery(query2, results, 20, 60);
                 // deleteRepeats(query2);
-                getImages(0, query1.size(), query1, query1.size());
+                getImages(0, query1.size() - 1, query1, query1.size() - 1);
             }
     }
 
@@ -203,7 +203,7 @@ public class SearchBar extends HBox {
             uploadImages(start, results, bar);
         }
 
-        for (start = 0; start < 25; start++) {
+        for (start = 0; start < 20; start++) {
             setImages(start);
         }
 
@@ -248,7 +248,7 @@ public class SearchBar extends HBox {
     } // urlMaker(String textBox)
 
     public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
-        query.clear();
+        query.clear(); // clear query on each new search
         for (int loop = start; loop < stop; loop++) {
             query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
         }
