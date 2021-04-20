@@ -71,7 +71,7 @@ public class SearchBar extends HBox {
         Thread startup = new Thread (() -> defaultSearch());
         startup.setDaemon(true);
         startup.start();
-        System.out.println(query1.size() + " size");
+
     } // SearchBar() constructor
 
     public void search() {
@@ -139,7 +139,7 @@ public class SearchBar extends HBox {
 
         defaultHelp(1, 7, 1, results(adress)); // post
         defaultHelp(1, 8, 4, results(adress));
-        defaultHelp(1, 9, 0, results(ss));
+        defaultHelp(1, 9, 0, results(s));
         defaultHelp(1, 10, 6, results(adress));
 
         defaultHelp(3, 11, 14, results(dress)); // jack harlow
