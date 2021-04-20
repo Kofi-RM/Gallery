@@ -75,7 +75,7 @@ public class SearchBar extends HBox {
     } // SearchBar() constructor
 
     public void search() {
-
+        images.clear();
         if (urlMaker(url.getText()).equals("exit")) {
             app.exit.fire();
         } else if (urlMaker(url.getText()).equals("show")) {
@@ -160,22 +160,7 @@ public class SearchBar extends HBox {
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
-        System.out.println();
-        for (int loop = 0; loop < cycles; loop++) {
-
-            //System.out.println(query1.get(loop) + " size " + query1.size());
-        }
-
         defaultGetImages(cycles, imageStart);
-
-        // changed query.size() to to cycle
-
-        /*for (int loop = 0; loop < cycles; loop++) {
-        setImagesRange(tileStart, imageStart);
-        tileStart++;
-        imageStart++;*/
-
-        // imgRngLooper(cycles, tileStart, imageStart);
         }
 
 
@@ -226,8 +211,6 @@ public class SearchBar extends HBox {
             System.out.println("yooo");
         }
 
-        System.out.println("fs:" + stop);
-
         for (start = start; start < stop; start++) {
             bar += up;
             uploadImages(start, results, bar);
@@ -241,8 +224,6 @@ public class SearchBar extends HBox {
                 diff = start;
             }
             int spot = start - diff;
-            System.out.println("spot " + spot);
-            System.out.println(results.get(spot));
             setImages(start, spot);
             counter++;
         }
@@ -350,22 +331,12 @@ public class SearchBar extends HBox {
 
 
                 if (string1.equals(string2)) {
-                 query.remove(loop2);
-                 //       System.out.println("remove it " + string2);
+                    query.remove(loop2);
+                    //       System.out.println("remove it " + string2);
                  loop2--;
-             }
-
-                //System.out.println("loop1 " + loop1 + " string1 " + string1);
-                //System.out.println("loop2 " + loop2 + " string2 " + string2);
-                //                System.out.println(query.size());
+                }
             }
         }
-
-//         System.out.println("query size " + query.size());
-         for (int loop = 0; loop < query.size(); loop++) {
-             //System.out.println("query after " + query.get(loop));
-         }
-
         } catch (IndexOutOfBoundsException io) {
             //System.out.println("catch");
             return;
