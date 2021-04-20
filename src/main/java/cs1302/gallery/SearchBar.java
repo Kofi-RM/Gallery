@@ -134,10 +134,13 @@ public class SearchBar extends HBox {
         bar = 0;
 
         defaultHelp(3, 0, 3, results(address)); //aries
-        imgRngLooper(1, 3, 7);
-        imgRngLooper(3, 4 , 12);
+        defaultHelp(1, 3, 7, results(address));
+        defaultHelp(3, 4, 12, results(address));
+        //imgRngLooper(1, 3, 7);
+        //imgRngLooper(3, 4 , 12);
 
-        defaultHelp(0,0 , 0, results(adress)); // post
+        /* defaultHelp(0,0 , 0, results(adress)); // post
+
         imgRngLooper(1, 7, 1);
         imgRngLooper(1, 8, 4);
         imgRngLooper(1, 10, 6);
@@ -155,8 +158,10 @@ public class SearchBar extends HBox {
         imgRngLooper(1, 17, 1);
 
        defaultHelp(0, 0, 0, results(ss));
-       imgRngLooper(1, 18, 0);
-       imgRngLooper(1, 19, 2);
+       //imgRngLooper(1, 18, 0);
+       //imgRngLooper(1, 19, 2);*/
+
+       imgRngLooper(6, 0, 0);
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
@@ -168,7 +173,7 @@ public class SearchBar extends HBox {
             //System.out.println(query1.get(loop) + " size " + query1.size());
         }
 
-        defaultGetImages(tileStart, cycles, imageStart);
+        defaultGetImages(cycles, imageStart);
 
         // changed query.size() to to cycle
 
@@ -177,7 +182,7 @@ public class SearchBar extends HBox {
         tileStart++;
         imageStart++;*/
 
-        imgRngLooper(cycles, tileStart, imageStart);
+        // imgRngLooper(cycles, tileStart, imageStart);
         }
 
 
@@ -251,11 +256,12 @@ public class SearchBar extends HBox {
 
     } // getImages()
 
-    public void defaultGetImages(int start, int stop, int imagesStart) {
-        int originalStart = start;
+    public void defaultGetImages(int cycles, int imageStart) {
+        //int originalStart = start;
         //images.clear();
-        for (start = start; start < stop; start++) {
-            uploadImages(start, query1, 0);
+        for (int loop = 0; loop < cycles; loop++) {
+            uploadImages(imageStart, query1, 0);
+            imageStart++;
          }
 
     }
