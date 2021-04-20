@@ -68,7 +68,7 @@ public class SearchBar extends HBox {
 
         getChildren().addAll(pause, text, url, update);
 
-        defaultSearch();
+        //defaultSearch();
         System.out.println(query1.size() + " size");
     } // SearchBar() constructor
 
@@ -87,24 +87,14 @@ public class SearchBar extends HBox {
 
 
             if (results.size() < 20) {
-                /*Platform.runLater (() -> {
-                    Alert halt = new Alert(AlertType.ERROR);
-                    halt.setHeaderText("Invalid search");
-                    halt.setContentText("Less than 20 artworks found");
-                    halt.setResizable(true);
-                    halt.setHeight(200);
-                    halt.setWidth(200);
-
-                    halt.showAndWait();*/
                 alert();
-                // });
             } else {
 
-                if (results.size() > 300) {
+                //if (results.size() > 300) {
                     setQuery(query1, results, 0, 300);
-                } else {
-                    setQuery(query1, results, 0, results.size());
-                }
+                    //} else {
+                    //setQuery(query1, results, 0, results.size());
+                    //}
                 //for (int loop = 0; loop < 300; loop++) {
                 //  System.out.println(query1.get(loop));
                 //}
@@ -136,6 +126,7 @@ public class SearchBar extends HBox {
         });
 
     }
+
     public void defaultSearch()  {
 
         String address = apple1 + "aries" + apple2;
@@ -145,14 +136,18 @@ public class SearchBar extends HBox {
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
-        /*setQuery(query1, results, 0, 6);
-        getImages(0, 6, results(address), 20);
-        getImages(6, 8, results(adress) , 20);
-        getImages(8, 10, results(dress), 20);
-        getImages(10, 18, results(ress), 20);
-        getImages(18, 20, results(ess), 20);;*/
+        setQuery(query1, results, 0, 150);
+        //getImages(0, 6, query1, 6);
+        //getImages(6, 8, results(adress) , 20);
+        //getImages(8, 10, results(dress), 20);
+        // getImages(10, 18, results(ress), 20);
+        // getImages(18, 20, results(ess), 20);;*/
     } // defaultSearch()
 
+    public void defaultHelp(int start, int stop) {
+        setQuery(query1, results, start, stop);
+
+    }
 
     public JsonArray results(String address) {
         try {
@@ -189,6 +184,7 @@ public class SearchBar extends HBox {
 
     public void getImages(int start, int stop, ArrayList<String> results, int total) {
         double up = 1.0F * (1.0 / total);
+        int originalStart = start;
 
         images.clear();
         if (bar > 1) {
@@ -203,7 +199,7 @@ public class SearchBar extends HBox {
             uploadImages(start, results, bar);
         }
 
-        for (start = 0; start < 20; start++) {
+        for (start = originalStart; start < 20; start++) {
             setImages(start);
         }
 
@@ -214,6 +210,11 @@ public class SearchBar extends HBox {
             app.array[loop].setImage(images.get(loop));
         });
     }
+
+//    public void setAll(int start, int stop) {
+
+
+    //  }
     public String  urlTrim(String url) {
         String trim;
         trim = url.substring(1, url.length() - 1);
@@ -249,8 +250,15 @@ public class SearchBar extends HBox {
 
     public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
         query.clear(); // clear query on each new search
-        for (int loop = start; loop < stop; loop++) {
-            query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+        if (results.size() > 300) {
+            for (int loop = start; loop < stop; loop++) {
+                query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+            }
+        } else {
+            for (int loop = start; loop < results.size(); loop++) {
+                query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
+            }
+
         }
     } // setQuery()
 
