@@ -68,7 +68,9 @@ public class SearchBar extends HBox {
 
         getChildren().addAll(pause, text, url, update);
 
-        //defaultSearch();
+        Thread startup = new Thread (() -> defaultSearch());
+        startup.setDaemon(true);
+        startup.start();
         System.out.println(query1.size() + " size");
     } // SearchBar() constructor
 
@@ -136,12 +138,14 @@ public class SearchBar extends HBox {
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
+        results(address);
         setQuery(query1, results, 0, 150);
-        //getImages(0, 6, query1, 6);
+        getImages(0, 6, query1, 6);
         //getImages(6, 8, results(adress) , 20);
         //getImages(8, 10, results(dress), 20);
         // getImages(10, 18, results(ress), 20);
         // getImages(18, 20, results(ess), 20);;*/
+
     } // defaultSearch()
 
     public void defaultHelp(int start, int stop) {
