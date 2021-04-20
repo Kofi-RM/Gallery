@@ -129,6 +129,8 @@ public class SearchBar extends HBox {
         String dress = apple1 + "jack+harlow" + apple2;
         String ress = apple1 + "kid+laroi" + apple2;
         String ess = apple1 + "alexander+hamilton" + apple2;
+        String ss = apple1 + "aries" + apple2;
+        String s = apple1 + "harlow+confetti" + apple2;
         bar = 0;
 
         defaultHelp(3, 0, 3, results(address));
@@ -137,17 +139,23 @@ public class SearchBar extends HBox {
 
         defaultHelp(0,0 , 0, results(adress));
         imgRngLooper(1, 7, 1);
-        imgRngLooper(3, 8, 4);
+        imgRngLooper(1, 8, 4);
+        imgRngLooper(1, 10, 6);
 
         defaultHelp(0, 0, 0, results(dress));
         imgRngLooper(3, 11, 14);
         imgRngLooper(1, 14 , 19);
+        defaultHelp(0, 0, 0, results(s));
+        imgRngLooper(1, 9, 0);
 
         defaultHelp(0, 0, 0, results(ress));
         imgRngLooper(2, 15, 5);
 
         defaultHelp(0, 0, 0, results(ess));
         imgRngLooper(1, 17, 1);
+
+        //defaultHelp(20, 0, 0, results(s));
+
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
