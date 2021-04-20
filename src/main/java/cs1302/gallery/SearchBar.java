@@ -175,6 +175,11 @@ public class SearchBar extends HBox {
         setQuery(query1, results(j), 0, 150);
     } // defaultSearch()
 
+    public void setDefaultImages(int tilepane, String url) {
+        Image pic = new Image(url);
+        app.array[tilepane].setImage(pic);
+    }
+
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
@@ -246,6 +251,8 @@ public class SearchBar extends HBox {
         }
 
     } // getImages()
+
+
 
     public void defaultGetImages(int cycles, int imageStart) {
         //int originalStart = start;
