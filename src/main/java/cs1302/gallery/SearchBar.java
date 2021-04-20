@@ -32,7 +32,7 @@ public class SearchBar extends HBox {
     JsonObject root;
     JsonArray results;
     Progress progress;
-    double bar = 0.05;
+    double bar = 0;
     ArrayList<String> query1 = new ArrayList<String>(150);
     ArrayList<String> query2 = new ArrayList<String>(150);
     ArrayList<Image> images = new ArrayList<Image>(150);
@@ -137,7 +137,7 @@ public class SearchBar extends HBox {
         defaultHelp(1, 3, 7, results(address));
         defaultHelp(3, 4, 12, results(address));
 
-        defaultHelp(1, 7, 1, results(adress));
+        defaultHelp(1, 7, 1, results(adress)); // post
         defaultHelp(1, 8, 4, results(adress));
         defaultHelp(1, 9, 0, results(ss));
         defaultHelp(1, 10, 6, results(adress));
@@ -145,17 +145,16 @@ public class SearchBar extends HBox {
         defaultHelp(3, 11, 14, results(dress)); // jack harlow
         defaultHelp(1, 14, 19, results(dress));
 
-        defaultHelp(2, 15, 5, results(ress));
+        defaultHelp(2, 15, 5, results(ress)); // kid laroi
 
         defaultHelp(1, 17, 1, results(ess)); // hammy
 
 
-       defaultHelp(1, 18, 0, results(ss));
-       defaultHelp(1, 19, 2, results(ss));
-       //imgRngLooper(1, 18, 0);
-       //imgRngLooper(1, 19, 2);*/
+        defaultHelp(1, 18, 0, results(ss)); // ben platt
+        defaultHelp(1, 19, 2, results(ss));
+        // DefaultHelp loads the images into a query
 
-       imgRngLooper(20, 0, 0);
+        imgRngLooper(20, 0, 0); // sets the tilepane to the images
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
