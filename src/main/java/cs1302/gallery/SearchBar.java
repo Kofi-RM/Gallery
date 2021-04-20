@@ -96,8 +96,8 @@ public class SearchBar extends HBox {
 
                 deleteRepeats(query1);
                 for (int loop = 0; loop < query1.size(); loop++) {
-                    //System.out.println(query1.size());;
-                    //System.out.println(query1.get(loop));
+
+                    System.out.println(query1.get(loop) + " size " + query1.size());
                  }
                 if (query1.size() < 20 ) {
                     alert();
@@ -132,23 +132,12 @@ public class SearchBar extends HBox {
         bar = 0;
 
         defaultHelp(3, 0, 3, results(address));
-//        for (int loop =
-        //setImageRange(
-        //defaultHelp(1, 1, 3, results(address));
+        imgRngLooper(1, 3, 7);
+        imgRngLooper(3, 4 , 12);
 
-        //results(address);
-        //setQuery(query1, results, 0, 150);
-        //deleteRepeats(query1);
+        defaultHelp(1, 7, 2, results(ess));
 
-        //System.out.println("query size " + query1.size());
-        //for (int loop = 0; loop < query1.size(); loop++) {
-        //  System.out.println("query after " + query1.get(loop));
-        // }
-
-            //setImagesRange(0, 3);
-
-        //getImages(0, 20, query1, 20);
-        //getImages(6, 8, results(adress) , 20);
+        //defaultHelp(1, 7, 1, results(ress));
         //getImages(8, 10, results(dress), 20);
         // getImages(10, 18, results(ress), 20);
         // getImages(18, 20, results(ess), 20);;*/
@@ -158,14 +147,23 @@ public class SearchBar extends HBox {
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
+        System.out.println();
+        for (int loop = 0; loop < query1.size(); loop++) {
+
+            System.out.println(query1.get(loop) + " size " + query1.size());
+        }
+
         defaultGetImages(tileStart, query1.size() - 1, imageStart);
 
-        for (int loop = 0; loop < cycles; loop++) {
+        /*for (int loop = 0; loop < cycles; loop++) {
         setImagesRange(tileStart, imageStart);
         tileStart++;
-        imageStart++;
+        imageStart++;*/
+
+        imgRngLooper(cycles, tileStart, imageStart);
         }
-    }
+
+
 
     public JsonArray results(String address) {
         try {
@@ -238,6 +236,7 @@ public class SearchBar extends HBox {
 
     public void defaultGetImages(int start, int stop, int imagesStart) {
         int originalStart = start;
+        images.clear();
         for (start = start; start < stop; start++) {
             uploadImages(start, query1, 0);
          }
@@ -249,7 +248,13 @@ public class SearchBar extends HBox {
             app.array[tilepane].setImage(images.get(imageIndex));
         });
     }
-
+    public void imgRngLooper(int cycles, int loop, int start) {
+        for (int loop1 = 0; loop1 < cycles; loop1++) {
+            setImagesRange(loop, start);
+            loop++;
+            start++;
+    }
+    }
     public void setImagesRange(int loop, int start) {
         Platform.runLater(() -> {
             app.array[loop].setImage(images.get(start));
@@ -309,7 +314,7 @@ public class SearchBar extends HBox {
 
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
-        System.out.println("query size " + query.size());
+//        System.out.println("query size " + query.size());
         for (int loop = 0; loop < query.size(); loop++) {
             //System.out.println("query " + query.get(loop));
         }
