@@ -63,14 +63,6 @@ public class SearchBar extends HBox {
             task.setDaemon(true);
             task.start();
 
-            Thread player = new Thread (() -> {
-                while (1 == 1) {
-                    if (app.play && shouldPlay) {
-
-                    }
-                }
-            });
-            player.setDaemon(true);
         }); // searches on a new thread on button press
 
         pause.setOnAction(e -> {
@@ -90,13 +82,23 @@ public class SearchBar extends HBox {
         Thread startup = new Thread (() -> defaultSearch());
         startup.setDaemon(true);
         startup.start();
+
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(keyFrame);
+        Thread player = new Thread (() -> {
+            while (1 == 1) {
+                if (app.play && shouldPlay) {
+                    timeline.play();
+                    //System.out.println(app.play);
+                }
+            }
+        });
+        player.setDaemon(true);
         //timeline.play();
     } // SearchBar() constructor
 
     public void play() {
-        int rand1 = (int)Math.round(Math.random() * 19);
+        /*int rand1 = (int)Math.round(Math.random() * 19);
         int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
         if (query1.size() < 22) {
             rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
@@ -112,9 +114,11 @@ public class SearchBar extends HBox {
         }
          for (int loop = 0; loop < query1.size();  loop++) {
              uploadImages(loop, query1, 0);
-         }
+             }*/
 
-        System.out.println(query1.size());
+        System.out.println(LocalTime.now());
+        System.out.println(app.play);
+
 
     }
     public void search() {
@@ -133,13 +137,16 @@ public class SearchBar extends HBox {
 
             if (results.size() < 20) {
                 alert();
+                return;
             } else {
                 setQuery(query1, results, 0, 150);
                 deleteRepeats(query1);
-                 }
-                if (query1.size() < 20 ) {
-                    alert();
-                } else {
+            }
+
+            if (query1.size() < 20 ) {
+                alert();
+                return;
+            } else {
                 getImages(0, query1.size() - 1, query1, query1.size() - 1);
             }
     }
@@ -215,7 +222,7 @@ public class SearchBar extends HBox {
         }
 
         System.out.println(query1.size());
-        timeline.play();
+        //timeline.play();
     } // defaultSearch()
 
     public void setDefaultImages(int tilepane, String url) {
