@@ -37,6 +37,7 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0;
+    boolean theDefault = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
     ArrayList<String> query2 = new ArrayList<String>(150);
     ArrayList<Image> images = new ArrayList<Image>(150);
@@ -76,20 +77,26 @@ public class SearchBar extends HBox {
         startup.setDaemon(true);
         startup.start();
 
-        EventHandler<ActionEvent> handler = event -> System.out.println(LocalTime.now());
-KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
-Timeline timeline = new Timeline();
-timeline.setCycleCount(Timeline.INDEFINITE);
-timeline.getKeyFrames().add(keyFrame);
-timeline.play();
+        EventHandler<ActionEvent> handler = event -> play();
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();
     } // SearchBar() constructor
 
-    public play() {
-        double rand = Math.random() * 25;
-        double rand = (Math.random() * query.size());
+    public void play() {
+        //int rand1 =  Math.round.(20);
+        int rand1 = (int)Math.round(Math.random()*20);
+        int rand2 = (int)Math.round(Math.random() * (query1.size() - 20) + 20);
+        //if (theDefault) {
+        //  rand2 = (int)Math.round(Math.random() * 20);
+        //  setImages(rand1, rand2);
+        //}
     }
     public void search() {
         images.clear();
+        theDefault = false;
         if (urlMaker(url.getText()).equals("exit")) {
             app.exit.fire();
         } else if (urlMaker(url.getText()).equals("show")) {
@@ -101,11 +108,10 @@ timeline.play();
         String address = apple1 + urlMaker(url.getText())  + apple2; // makes address
         int numImages = results(address).size(); // number of search results
 
-
             if (results.size() < 20) {
                 alert();
             } else {
-                setQuery(query1, results, 0, 300);
+                setQuery(query1, results, 0, 150);
                 deleteRepeats(query1);
                  }
                 if (query1.size() < 20 ) {
@@ -138,6 +144,7 @@ timeline.play();
         String ess = apple1 + "alexander+hamilton" + apple2;
         String ss = apple1 + "ben+platt" + apple2;
         String s = apple1 + "harlow+confetti" + apple2;
+        String j = apple1 + "juice+wrld" + apple2;
         bar = 0;
 
         defaultHelp(3, 0, 3, results(address)); //aries
@@ -162,6 +169,10 @@ timeline.play();
         // DefaultHelp loads the images into a query
 
         imgRngLooper(20, 0, 0); // sets the tilepane to the images
+        for (int loop = 0; loop < 20; loop++) {
+            System.out.println(query1.get(loop));
+        }
+        setQuery(query1, results(j), 0, 150);
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
