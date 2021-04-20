@@ -163,12 +163,14 @@ public class SearchBar extends HBox {
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
         System.out.println();
-        for (int loop = 0; loop < query1.size(); loop++) {
+        for (int loop = 0; loop < cycles; loop++) {
 
             //System.out.println(query1.get(loop) + " size " + query1.size());
         }
 
-        defaultGetImages(tileStart, query1.size() - 1, imageStart);
+        defaultGetImages(tileStart, cycles, imageStart);
+
+        // changed query.size() to to cycle
 
         /*for (int loop = 0; loop < cycles; loop++) {
         setImagesRange(tileStart, imageStart);
@@ -251,7 +253,7 @@ public class SearchBar extends HBox {
 
     public void defaultGetImages(int start, int stop, int imagesStart) {
         int originalStart = start;
-        images.clear();
+        //images.clear();
         for (start = start; start < stop; start++) {
             uploadImages(start, query1, 0);
          }
