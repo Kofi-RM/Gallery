@@ -39,7 +39,7 @@ public class SearchBar extends HBox {
     double bar = 0;
     boolean theDefault = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
-    ArrayList<String> onsight = new ArrayList<String>(150);
+    ArrayList<String> initial = new ArrayList<String>(150);
     ArrayList<Image> images = new ArrayList<Image>(150);
 
     public SearchBar(GalleryApp app, Progress bar) {
@@ -137,84 +137,68 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
         String j = apple1 + "juice+wrld" + apple2;
-        onsight.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
+        initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
         "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
 
-        String two = "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
-            "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg";
-        String three = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/36/d7/b7/" +
-            "36d7b769-e37c-cdea-584b-b1a80be38e08/source/100x100bb.jpg";
-        String four = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/45/f2/" +
-            "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg";
-        String five = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/2c/60/97/" +
-            "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg";
+        initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
+        "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg");
+        initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/36/d7/b7/" +
+        "36d7b769-e37c-cdea-584b-b1a80be38e08/source/100x100bb.jpg");
+        initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/45/f2/" +
+        "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg");
+        initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/2c/60/97/" +
+        "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg");
 
-        String six = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/4b/36/41/" +
-            "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg";
+        initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/4b/36/41/" +
+        "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg");
 
-        String seven = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ce/06/50/" +
-            "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg";
+        initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ce/06/50/" +
+        "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg");
 
-        String eight = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/36/9b/a2/" +
-            "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg";
+        initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/36/9b/a2/" +
+        "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg");
 
-        String nine = "https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/50/8d/91/"
-            + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg";
+        initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/50/8d/91/"
+        + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg");
 
-        String ten = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
-            "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg";
+        initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
+            "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
 
-        String eleven = "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5e/4f/1e/" +
-            "5e4f1e69-20f7-e210-de36-0b6d89b36ca9/source/100x100bb.jpg";
+        initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5e/4f/1e/" +
+            "5e4f1e69-20f7-e210-de36-0b6d89b36ca9/source/100x100bb.jpg");
 
-        String twelve = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/89/70/79/" +
-            "89707908-0f16-817d-1d59-27dc803952ee/source/100x100bb.jpg";
+        initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/89/70/79/" +
+            "89707908-0f16-817d-1d59-27dc803952ee/source/100x100bb.jpg");
 
-        String thirteen = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/ca/84/5f/" +
-            "ca845f3c-1776-a6c0-c5d2-3246c8f89777/source/100x100bb.jpg";
+        initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/ca/84/5f/" +
+            "ca845f3c-1776-a6c0-c5d2-3246c8f89777/source/100x100bb.jpg");
 
-        String fourteen = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/70/7e/13/" +
-            "707e13d5-6452-e874-8069-26e7a9864566/source/100x100bb.jpg";
+        initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/70/7e/13/" +
+            "707e13d5-6452-e874-8069-26e7a9864566/source/100x100bb.jpg");
 
-        String fifteen = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/de/e5/02/" +
-            "dee50251-b193-df0e-255f-079787e50b4e/source/100x100bb.jpg";
+        initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/de/e5/02/" +
+            "dee50251-b193-df0e-255f-079787e50b4e/source/100x100bb.jpg");
 
-        String sixteen = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/73/f0/0d/" +
-            "73f00d56-8021-dd5e-f209-eb385ce1560b/source/100x100bb.jpg";
+        initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/73/f0/0d/" +
+            "73f00d56-8021-dd5e-f209-eb385ce1560b/source/100x100bb.jpg");
 
-        String seventeen = "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/da/eb/51/" +
-            "daeb5176-01f1-2850-3913-28bcb9864736/source/100x100bb.jpg";
+        initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/da/eb/51/" +
+            "daeb5176-01f1-2850-3913-28bcb9864736/source/100x100bb.jpg");
 
-        String eighteen = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/77/75/25/" +
-            "777525b4-7579-0e68-6022-890360c967cc/source/100x100bb.jpg";
+        initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/77/75/25/" +
+            "777525b4-7579-0e68-6022-890360c967cc/source/100x100bb.jpg");
 
-        String nineteen = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
-            "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg";
+        initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
+            "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
 
-        String twenty = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
-            "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg";
+        initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
+            "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg");
 
-        setDefaultImages(0, one);
-        setDefaultImages( 1,  two);
-        setDefaultImages( 2,  three);
-        setDefaultImages(3,  four);
-        setDefaultImages( 4,  five);
-        setDefaultImages( 5,  six);
-        setDefaultImages( 6,  seven);
-        setDefaultImages( 7,  eight);
-        setDefaultImages( 8,  nine);
-        setDefaultImages( 9, ten);
-        setDefaultImages( 10, eleven);
-        setDefaultImages( 11,  twelve);
-        setDefaultImages( 12,  thirteen);
-        setDefaultImages( 13, fourteen);
-        setDefaultImages(14,  fifteen);
-        setDefaultImages(15,  sixteen);
-        setDefaultImages(16, seventeen);
-        setDefaultImages( 17,  eighteen);
-        setDefaultImages( 18, nineteen);
-        setDefaultImages( 19,  twenty);
+        for (int loop = 0; loop < 20;  loop++) {
+            setDefaultImages(loop, initial.get(loop));
+        }
         setQuery(query1, results(j), 0, 150);
+
     } // defaultSearch()
 
     public void setDefaultImages(int tilepane, String url) {
