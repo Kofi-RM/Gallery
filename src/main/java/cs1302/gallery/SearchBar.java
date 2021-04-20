@@ -141,7 +141,13 @@ public class SearchBar extends HBox {
         results(address);
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
-        getImages(0, 6, query1, 6);
+
+        System.out.println("query size " + query1.size());
+        for (int loop = 0; loop < query1.size(); loop++) {
+            System.out.println("query after " + query1.get(loop));
+        }
+
+        getImages(0, 5, query1, 5);
         //getImages(6, 8, results(adress) , 20);
         //getImages(8, 10, results(dress), 20);
         // getImages(10, 18, results(ress), 20);
@@ -288,6 +294,9 @@ public class SearchBar extends HBox {
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
         System.out.println("query size " + query.size());
+        for (int loop = 0; loop < query.size(); loop++) {
+            System.out.println("query " + query.get(loop));
+        }
 
         try {
         for (loop1 = 0; loop1 < query.size(); loop1++) {
@@ -306,6 +315,7 @@ public class SearchBar extends HBox {
                 if (string1.equals(string2)) {
                  query.remove(loop2);
                  System.out.println("remove it " + string2);
+                 loop2--;
              }
 
                 System.out.println("loop1 " + loop1 + " string1 " + string1);
@@ -313,7 +323,13 @@ public class SearchBar extends HBox {
                 System.out.println(query.size());
             }
         }
-        }catch (IndexOutOfBoundsException io) {
+
+         System.out.println("query size " + query.size());
+         for (int loop = 0; loop < query.size(); loop++) {
+             System.out.println("query after " + query.get(loop));
+         }
+
+        } catch (IndexOutOfBoundsException io) {
             //System.out.println("catch");
             return;
         }
