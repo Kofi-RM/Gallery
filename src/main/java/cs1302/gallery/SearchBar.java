@@ -136,32 +136,26 @@ public class SearchBar extends HBox {
         defaultHelp(3, 0, 3, results(address)); //aries
         defaultHelp(1, 3, 7, results(address));
         defaultHelp(3, 4, 12, results(address));
-        //imgRngLooper(1, 3, 7);
-        //imgRngLooper(3, 4 , 12);
 
-        /* defaultHelp(0,0 , 0, results(adress)); // post
+        defaultHelp(1, 7, 1, results(adress));
+        defaultHelp(1, 8, 4, results(adress));
+        defaultHelp(1, 9, 0, results(ss));
+        defaultHelp(1, 10, 6, results(adress));
 
-        imgRngLooper(1, 7, 1);
-        imgRngLooper(1, 8, 4);
-        imgRngLooper(1, 10, 6);
+        defaultHelp(3, 11, 14, results(dress)); // jack harlow
+        defaultHelp(1, 14, 19, results(dress));
 
-        defaultHelp(0, 0, 0, results(dress)); // jack harlow
-        imgRngLooper(3, 11, 14);
-        imgRngLooper(1, 14 , 19);
-        defaultHelp(0, 0, 0, results(s));
-        imgRngLooper(1, 9, 0);
+        defaultHelp(2, 15, 5, results(ress));
 
-        defaultHelp(0, 0, 0, results(ress)); // kid laroi
-        imgRngLooper(2, 15, 5);
+        defaultHelp(1, 17, 1, results(ess)); // hammy
 
-        defaultHelp(0, 0, 0, results(ess)); // hammy
-        imgRngLooper(1, 17, 1);
 
-       defaultHelp(0, 0, 0, results(ss));
+       defaultHelp(1, 18, 0, results(ss));
+       defaultHelp(1, 19, 2, results(ss));
        //imgRngLooper(1, 18, 0);
        //imgRngLooper(1, 19, 2);*/
 
-       imgRngLooper(6, 0, 0);
+       imgRngLooper(20, 0, 0);
     } // defaultSearch()
 
     public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
