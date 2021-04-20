@@ -28,7 +28,7 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=300&media=music";
+    String apple2 = "&limit=150&media=music";
     GalleryApp app;
     URL search;
     InputStreamReader reader;
@@ -39,8 +39,12 @@ public class SearchBar extends HBox {
     double bar = 0;
     boolean theDefault = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
-    ArrayList<String> initial = new ArrayList<String>(150);
+    ArrayList<String> initial = new ArrayList<String>(20);
     ArrayList<Image> images = new ArrayList<Image>(150);
+    EventHandler<ActionEvent> handler = event -> play();
+    KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
+    Timeline timeline = new Timeline();
+
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -76,19 +80,15 @@ public class SearchBar extends HBox {
         Thread startup = new Thread (() -> defaultSearch());
         startup.setDaemon(true);
         startup.start();
-
-        EventHandler<ActionEvent> handler = event -> play();
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
-        Timeline timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(keyFrame);
-        timeline.play();
+        //timeline.play();
     } // SearchBar() constructor
 
     public void play() {
         //int rand1 =  Math.round.(20);
         int rand1 = (int)Math.round(Math.random()*20);
-        int rand2 = (int)Math.round(Math.random() * (query1.size() - 20) + 20);
+        int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
         //if (theDefault) {
         //  rand2 = (int)Math.round(Math.random() * 20);
         setImages(rand1, rand2);
@@ -183,7 +183,12 @@ public class SearchBar extends HBox {
             setDefaultImages(loop, initial.get(loop));
         }
         setQuery(query1, results(j), 0, 150);
-
+        deleteRepeats(query1);
+        for (int loop = 0; loop < query1.size();  loop++) {
+            System.out.println(query1.size());
+            uploadImages(loop, query1, 0);
+        }
+        timeline.play();
     } // defaultSearch()
 
     public void setDefaultImages(int tilepane, String url) {
