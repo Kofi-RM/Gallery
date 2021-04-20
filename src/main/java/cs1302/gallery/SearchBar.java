@@ -111,8 +111,8 @@ public class SearchBar extends HBox {
 
                 deleteRepeats(query1);
                 for (int loop = 0; loop < query1.size(); loop++) {
-                    System.out.println(query1.size());;
-                    System.out.println(query1.get(loop));
+                    //System.out.println(query1.size());;
+                    //System.out.println(query1.get(loop));
                  }
                 if (query1.size() < 20 ) {
                     alert();
@@ -248,6 +248,7 @@ public class SearchBar extends HBox {
     } // urlMaker(String textBox)
 
     public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
+        query.clear();
         for (int loop = start; loop < stop; loop++) {
             query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
         }
