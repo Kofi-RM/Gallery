@@ -220,9 +220,10 @@ public class SearchBar extends HBox {
             if (counter == 0) {
                 diff = start;
             }
-            diff = start - diff;
-
-            setImages(start, diff);
+            int spot = start - diff;
+            System.out.println("spot " + spot);
+            System.out.println(results.get(spot));
+            setImages(start, spot);
             counter++;
         }
 
