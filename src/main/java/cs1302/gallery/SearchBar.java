@@ -131,7 +131,9 @@ public class SearchBar extends HBox {
         String ess = apple1 + "halsey" + apple2;
         bar = 0;
 
-        defaultHelp(1, 0, 3, results(address));
+        defaultHelp(3, 0, 3, results(address));
+//        for (int loop =
+        //setImageRange(
         //defaultHelp(1, 1, 3, results(address));
 
         //results(address);
@@ -309,7 +311,7 @@ public class SearchBar extends HBox {
         String string2 = query.get(loop2);
         System.out.println("query size " + query.size());
         for (int loop = 0; loop < query.size(); loop++) {
-            System.out.println("query " + query.get(loop));
+            //System.out.println("query " + query.get(loop));
         }
 
         try {
