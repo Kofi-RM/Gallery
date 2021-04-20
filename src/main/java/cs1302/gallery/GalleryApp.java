@@ -27,6 +27,7 @@ public class GalleryApp extends Application {
     MenuItem exit = new MenuItem("Exit");
     Progress progress = new Progress();
     Boolean play = true;
+    SearchBar search = new SearchBar(this ,progress);
 
 
     /** {@inheritdoc} */
@@ -62,7 +63,7 @@ public class GalleryApp extends Application {
         System.out.println("yuo");
 
 
-        VBox glass = new VBox(2, menu, new SearchBar(this ,progress), pane, progress);
+        VBox glass = new VBox(2, menu, search, pane, progress);
         pane.setMinWidth(300);
         pane.setMaxWidth(900);
 

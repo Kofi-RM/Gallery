@@ -24,7 +24,7 @@ public class SearchBar extends HBox {
     Button pause = new Button("Pause");
     Button update = new Button("Update Images");
     String apple1 = "https://itunes.apple.com/search?term=";
-    String apple2 = "&limit=60&media=music";
+    String apple2 = "&limit=300&media=music";
     GalleryApp app;
     URL search;
     InputStreamReader reader;
@@ -33,9 +33,9 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0.05;
-    ArrayList<String> query1 = new ArrayList<String>(60);
-    ArrayList<String> query2 = new ArrayList<String>(60);
-    ArrayList<Image> images = new ArrayList<Image>(20);
+    ArrayList<String> query1 = new ArrayList<String>(150);
+    ArrayList<String> query2 = new ArrayList<String>(150);
+    ArrayList<Image> images = new ArrayList<Image>(150);
 
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
@@ -100,10 +100,14 @@ public class SearchBar extends HBox {
                 // });
             } else {
 
-                setQuery(query1, results, 0, 20);
-                for (int loop = 0; loop < 20; loop++) {
-                    System.out.println(query1.get(loop));
+                if (results.size() > 300) {
+                    setQuery(query1, results, 0, 300);
+                } else {
+                    setQuery(query1, results, 0, results.size());
                 }
+                //for (int loop = 0; loop < 300; loop++) {
+                //  System.out.println(query1.get(loop));
+                //}
 
                 deleteRepeats(query1);
                 for (int loop = 0; loop < query1.size(); loop++) {
@@ -199,7 +203,7 @@ public class SearchBar extends HBox {
             uploadImages(start, results, bar);
         }
 
-        for (start = 0; start < stop; start++) {
+        for (start = 0; start < 25; start++) {
             setImages(start);
         }
 
