@@ -16,6 +16,10 @@ import javafx.application.*;
 import java.util.ArrayList;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.animation.*;
+import java.time.LocalTime;
+import javafx.util.Duration;
+import javafx.event.*;
 
 public class SearchBar extends HBox {
 
@@ -72,8 +76,18 @@ public class SearchBar extends HBox {
         startup.setDaemon(true);
         startup.start();
 
+        EventHandler<ActionEvent> handler = event -> System.out.println(LocalTime.now());
+KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
+Timeline timeline = new Timeline();
+timeline.setCycleCount(Timeline.INDEFINITE);
+timeline.getKeyFrames().add(keyFrame);
+timeline.play();
     } // SearchBar() constructor
 
+    public play() {
+        double rand = Math.random() * 25;
+        double rand = (Math.random() * query.size());
+    }
     public void search() {
         images.clear();
         if (urlMaker(url.getText()).equals("exit")) {
@@ -168,9 +182,8 @@ public class SearchBar extends HBox {
             root = jetson.getAsJsonObject();
             results = root.getAsJsonArray("results");
 
-
         } catch (IOException ex){
-            System.out.println("change this when you can");
+            System.out.println(ex.getMessage());
         }
 
         return results;
@@ -304,7 +317,6 @@ public class SearchBar extends HBox {
 
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
-
 
         try {
         for (loop1 = 0; loop1 < query.size(); loop1++) {

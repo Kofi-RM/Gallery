@@ -11,9 +11,9 @@ import javafx.geometry.*;
 import javafx.scene.image.*;
 import javafx.geometry.Insets;
 import javafx.event.*;
-//import javafx.scene.layout.BorderPane;
-//import cs1302.p2.*;
-
+import javafx.animation.*;
+import java.time.LocalTime;
+import javafx.util.Duration;
 
 /**
  * Represents an iTunes GalleryApp!
@@ -85,6 +85,12 @@ public class GalleryApp extends Application {
         stage.setHeight(585);
         //stage.setMaximized(true);
         stage.show();
+/*        EventHandler<ActionEvent> handler = event -> System.out.println(LocalTime.now());
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
+        Timeline timeline = new Timeline();
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.play();*/
         //stage.setResizable(false);
          // start
 
