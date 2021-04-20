@@ -71,10 +71,10 @@ public class GalleryApp extends Application {
 
 
         //stage.setAlwaysOnTop(true);
-        stage.setMaxWidth(920);
-        stage.setMaxHeight(660);
-        stage.setMinWidth(50);
-        stage.setMinHeight(400);
+        stage.setMaxWidth(700);
+        stage.setMaxHeight(600);
+        stage.setMinWidth(300);
+        stage.setMinHeight(500);
 
 
 

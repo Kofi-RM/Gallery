@@ -91,19 +91,12 @@ public class SearchBar extends HBox {
             if (results.size() < 20) {
                 alert();
             } else {
-
-                    setQuery(query1, results, 0, 300);
-
+                setQuery(query1, results, 0, 300);
                 deleteRepeats(query1);
-                for (int loop = 0; loop < query1.size(); loop++) {
-
-                    System.out.println(query1.get(loop) + " size " + query1.size());
                  }
                 if (query1.size() < 20 ) {
                     alert();
-                } else
-                // setQuery(query2, results, 20, 60);
-                // deleteRepeats(query2);
+                } else {
                 getImages(0, query1.size() - 1, query1, query1.size() - 1);
             }
     }
@@ -311,10 +304,7 @@ public class SearchBar extends HBox {
 
         String string1 = query.get(loop1);
         String string2 = query.get(loop2);
-//        System.out.println("query size " + query.size());
-        for (int loop = 0; loop < query.size(); loop++) {
-            //System.out.println("query " + query.get(loop));
-        }
+
 
         try {
         for (loop1 = 0; loop1 < query.size(); loop1++) {
@@ -322,7 +312,7 @@ public class SearchBar extends HBox {
 
                 if (loop1 == 0 && loop2 == 0) {
                     loop2++;
-                } else if (loop1 == loop2) { // && loop1) //< query.size() - 1) {
+                } else if (loop1 == loop2) {
                     loop2++;
                 }
 
@@ -332,7 +322,7 @@ public class SearchBar extends HBox {
 
                 if (string1.equals(string2)) {
                     query.remove(loop2);
-                    //       System.out.println("remove it " + string2);
+
                  loop2--;
                 }
             }
