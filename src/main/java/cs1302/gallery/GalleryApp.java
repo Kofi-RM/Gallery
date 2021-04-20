@@ -69,15 +69,11 @@ public class GalleryApp extends Application {
 
         Scene scene = new Scene(glass);
 
-
         //stage.setAlwaysOnTop(true);
         stage.setMaxWidth(700);
         stage.setMaxHeight(600);
         stage.setMinWidth(300);
         stage.setMinHeight(500);
-
-
-
         stage.setTitle("GalleryApp!");
         stage.setScene(scene);
         //stage.sizeToScene();
@@ -85,15 +81,6 @@ public class GalleryApp extends Application {
         stage.setHeight(585);
         //stage.setMaximized(true);
         stage.show();
-/*        EventHandler<ActionEvent> handler = event -> System.out.println(LocalTime.now());
-        KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
-        Timeline timeline = new Timeline();
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(keyFrame);
-        timeline.play();*/
-        //stage.setResizable(false);
-         // start
-
     }
 
     public void setExit() {

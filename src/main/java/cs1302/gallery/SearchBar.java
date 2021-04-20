@@ -37,8 +37,9 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0;
-    boolean theDefault = true;
+    boolean shouldPlay = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
+    ArrayList<String> flashImage = new ArrayList<String>(150);
     ArrayList<String> initial = new ArrayList<String>(20);
     ArrayList<Image> images = new ArrayList<Image>(150);
     EventHandler<ActionEvent> handler = event -> play();
@@ -61,6 +62,15 @@ public class SearchBar extends HBox {
             Thread task = new Thread (() -> search());
             task.setDaemon(true);
             task.start();
+
+            Thread player = new Thread (() -> {
+                while (1 == 1) {
+                    if (app.play && shouldPlay) {
+
+                    }
+                }
+            });
+            player.setDaemon(true);
         }); // searches on a new thread on button press
 
         pause.setOnAction(e -> {
@@ -86,17 +96,30 @@ public class SearchBar extends HBox {
     } // SearchBar() constructor
 
     public void play() {
-        //int rand1 =  Math.round.(20);
-        int rand1 = (int)Math.round(Math.random()*20);
+        int rand1 = (int)Math.round(Math.random() * 19);
         int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
-        //if (theDefault) {
-        //  rand2 = (int)Math.round(Math.random() * 20);
+        if (query1.size() < 22) {
+            rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
+        }
+        String rerun = apple1 + "charlie+puth" + apple2;
+
         setImages(rand1, rand2);
-        //}
+        query1.remove(rand2);
+        if (query1.size() == 0) {
+            setQuery(query1, results(rerun), 0, 150);
+            deleteRepeats(query1);
+            System.out.println("query size " + query1.size());
+        }
+         for (int loop = 0; loop < query1.size();  loop++) {
+             uploadImages(loop, query1, 0);
+         }
+
+        System.out.println(query1.size());
+
     }
     public void search() {
         images.clear();
-        theDefault = false;
+        //theDefault = false;
         if (urlMaker(url.getText()).equals("exit")) {
             app.exit.fire();
         } else if (urlMaker(url.getText()).equals("show")) {
@@ -136,7 +159,7 @@ public class SearchBar extends HBox {
     }
 
     public void defaultSearch()  {
-        String j = apple1 + "juice+wrld" + apple2;
+        String j = apple1 + "ariane+grande" + apple2;
 
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
         "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
@@ -185,9 +208,13 @@ public class SearchBar extends HBox {
         setQuery(query1, results(j), 0, 150);
         deleteRepeats(query1);
         for (int loop = 0; loop < query1.size();  loop++) {
-            System.out.println(query1.size());
+            System.out.println(query1.get(loop));
+        }
+        for (int loop = 0; loop < query1.size();  loop++) {
             uploadImages(loop, query1, 0);
         }
+
+        System.out.println(query1.size());
         timeline.play();
     } // defaultSearch()
 
