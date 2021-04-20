@@ -39,7 +39,7 @@ public class SearchBar extends HBox {
     double bar = 0;
     boolean theDefault = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
-    ArrayList<String> query2 = new ArrayList<String>(150);
+    ArrayList<String> onsight = new ArrayList<String>(150);
     ArrayList<Image> images = new ArrayList<Image>(150);
 
     public SearchBar(GalleryApp app, Progress bar) {
@@ -137,8 +137,8 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
         String j = apple1 + "juice+wrld" + apple2;
-        String one = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
-            "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg";
+        onsight.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
+        "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
 
         String two = "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
             "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg";
@@ -214,9 +214,6 @@ public class SearchBar extends HBox {
         setDefaultImages( 17,  eighteen);
         setDefaultImages( 18, nineteen);
         setDefaultImages( 19,  twenty);
-        for (int loop = 0; loop < 20; loop++) {
-            System.out.println(query1.get(loop));
-        }
         setQuery(query1, results(j), 0, 150);
     } // defaultSearch()
 
