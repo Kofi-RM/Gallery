@@ -136,6 +136,7 @@ public class SearchBar extends HBox {
     }
 
     public void defaultSearch()  {
+        String j = apple1 + "juice+wrld" + apple2;
         String one = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg";
         String two = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/83/55/f7/" +
@@ -143,59 +144,59 @@ public class SearchBar extends HBox {
         String three = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
             "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg";
         String four = "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ff/c6/5c/" +
-            "ffc65cfc-04dd-776c-de3e-047b26fe8458/source/100x100bb.jpg ";
+            "ffc65cfc-04dd-776c-de3e-047b26fe8458/source/100x100bb.jpg";
         String five = " https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/63/ff/76/" +
             "63ff761d-0513-6565-28ec-1c2837dfb780/source/100x100bb.jpg";
             String six = "https://is3-ssl.mzstatic.com/image/thumb/Music123/v4/22/55/b4/" +
-                "2255b442-0b47-b9cc-c874-a412a0b7265a/source/100x100bb.jpg ";
+                "2255b442-0b47-b9cc-c874-a412a0b7265a/source/100x100bb.jpg";
             String seven = "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/c9/ab/17/" +
-                "c9ab17fe-6ff5-44cb-a8b3-e6bea5ffecba/source/100x100bb.jpg ";
+                "c9ab17fe-6ff5-44cb-a8b3-e6bea5ffecba/source/100x100bb.jpg";
             String eight = "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/88/11/7b/" +
                 "88117bb6-ab0d-0134-c5be-9632d49ebc12/source/100x100bb.jpg";
             String nine = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/1d/b4/d7/" +
-                "1db4d712-91d8-81e6-79f8-c2ae1458423c/source/100x100bb.jpg ";
+                "1db4d712-91d8-81e6-79f8-c2ae1458423c/source/100x100bb.jpg";
             String ten = " https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9c/39/91/" +
                 "9c3991d8-3949-de12-a275-4163389faae5/source/100x100bb.jpg";
             String eleven = "https://is5-ssl.mzstatic.com/image/thumb/Music117/v4/38/42/73/" +
                 "3842738c-3090-6950-4323-a16a8d78d204/source/100x100bb.jpg";
             String twelve = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/c1/06/b4/" +
-                "c106b47a-82b7-55d2-24ff-4401ab979ed5/source/100x100bb.jpg ";
+                "c106b47a-82b7-55d2-24ff-4401ab979ed5/source/100x100bb.jpg";
             String thirteen = "https://is5-ssl.mzstatic.com/image/thumb/Music117/v4/02/1f/39/" +
                 "021f39c0-806d-4b30-8cb8-12b568f5869f/source/100x100bb.jpg";
             String fourteen = "https://is5-ssl.mzstatic.com/image/thumb/Music113/v4/2e/44/ff/" +
-                "2e44ff4b-8130-dd1a-8e63-a5937c500f87/source/100x100bb.jpg ";
+                "2e44ff4b-8130-dd1a-8e63-a5937c500f87/source/100x100bb.jpg";
             String fifteen = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/d7/ea/f1/" +
-                "d7eaf14d-496c-f613-d5fc-f4f0c3830c71/source/100x100bb.jpg ";
+                "d7eaf14d-496c-f613-d5fc-f4f0c3830c71/source/100x100bb.jpg";
             String sixteen = "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/15/e1/5c/" +
-                "15e15ccc-0c2f-bff3-e3e5-30bc53300d8f/source/100x100bb.jpg ";
+                "15e15ccc-0c2f-bff3-e3e5-30bc53300d8f/source/100x100bb.jpg";
             String seventeen = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/b4/19/64/" +
-                "b419647b-ede5-1723-fbcf-91aa26715003/source/100x100bb.jpg ";
+                "b419647b-ede5-1723-fbcf-91aa26715003/source/100x100bb.jpg";
             String eighteen = "https://is5-ssl.mzstatic.com/image/thumb/Music6/v4/82/29/60/" +
-                "822960d6-68e2-55ff-b072-201aa8dc8052/source/100x100bb.jpg ";
+                "822960d6-68e2-55ff-b072-201aa8dc8052/source/100x100bb.jpg";
             String nineteen = "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/5d/f6/06/" +
-                "5df60632-1c48-c507-a502-369096ff191b/source/100x100bb.jpg ";
+                "5df60632-1c48-c507-a502-369096ff191b/source/100x100bb.jpg";
             String twenty = "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/73/71/47/" +
-                "73714787-c46f-7e69-cec7-03db3d491b90/source/100x100bb.jpg ";
-        setDefaultImages(int 0, String one);
-        setDefaultImages(int 1, String two);
-        setDefaultImages(int 2, String three);
-        setDefaultImages(int 3, String four);
-        setDefaultImages(int 4, String five);
-        setDefaultImages(int 5, String six);
-        setDefaultImages(int 6, String seven);
-        setDefaultImages(int 7, String eight);
-        setDefaultImages(int 8, String nine);
-        setDefaultImages(int 9, String ten);
-        setDefaultImages(int 10, String eleven);
-        setDefaultImages(int 11, String twelve);
-        setDefaultImages(int 12, String thirteen);
-        setDefaultImages(int 13, String fourteen);
-        setDefaultImages(int 14, String fifteen);
-        setDefaultImages(int 15, String sixteen);
-        setDefaultImages(int 16, String seventeen);
-        setDefaultImages(int 17, String eighteen);
-        setDefaultImages(int 18, String nineteen);
-        setDefaultImages(int 19, String twenty);
+                "73714787-c46f-7e69-cec7-03db3d491b90/source/100x100bb.jpg";
+        setDefaultImages(0, one);
+        setDefaultImages( 1,  two);
+        setDefaultImages( 2,  three);
+        setDefaultImages(3,  four);
+        setDefaultImages( 4,  five);
+        setDefaultImages( 5,  six);
+        setDefaultImages( 6,  seven);
+        setDefaultImages( 7,  eight);
+        setDefaultImages( 8,  nine);
+        setDefaultImages( 9, ten);
+        setDefaultImages( 10, eleven);
+        setDefaultImages( 11,  twelve);
+        setDefaultImages( 12,  thirteen);
+        setDefaultImages( 13, fourteen);
+        setDefaultImages(14,  fifteen);
+        setDefaultImages(15,  sixteen);
+        setDefaultImages(16, seventeen);
+        setDefaultImages( 17,  eighteen);
+        setDefaultImages( 18, nineteen);
+        setDefaultImages( 19,  twenty);
         for (int loop = 0; loop < 20; loop++) {
             System.out.println(query1.get(loop));
         }
