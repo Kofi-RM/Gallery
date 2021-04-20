@@ -137,46 +137,63 @@ public class SearchBar extends HBox {
 
     public void defaultSearch()  {
         String j = apple1 + "juice+wrld" + apple2;
-        String one = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
+        String one = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
+            "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg";
+
+        String two = "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
+            "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg";
+        String three = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/36/d7/b7/" +
+            "36d7b769-e37c-cdea-584b-b1a80be38e08/source/100x100bb.jpg";
+        String four = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/45/f2/" +
+            "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg";
+        String five = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/2c/60/97/" +
+            "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg";
+
+        String six = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/4b/36/41/" +
+            "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg";
+
+        String seven = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ce/06/50/" +
+            "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg";
+
+        String eight = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/36/9b/a2/" +
+            "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg";
+
+        String nine = "https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/50/8d/91/"
+            + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg";
+
+        String ten = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg";
-        String two = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/83/55/f7/" +
-            "8355f738-f3a6-235b-0b21-84b42ba74fb7/source/100x100bb.jpg";
-        String three = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
+
+        String eleven = "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5e/4f/1e/" +
+            "5e4f1e69-20f7-e210-de36-0b6d89b36ca9/source/100x100bb.jpg";
+
+        String twelve = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/89/70/79/" +
+            "89707908-0f16-817d-1d59-27dc803952ee/source/100x100bb.jpg";
+
+        String thirteen = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/ca/84/5f/" +
+            "ca845f3c-1776-a6c0-c5d2-3246c8f89777/source/100x100bb.jpg";
+
+        String fourteen = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/70/7e/13/" +
+            "707e13d5-6452-e874-8069-26e7a9864566/source/100x100bb.jpg";
+
+        String fifteen = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/de/e5/02/" +
+            "dee50251-b193-df0e-255f-079787e50b4e/source/100x100bb.jpg";
+
+        String sixteen = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/73/f0/0d/" +
+            "73f00d56-8021-dd5e-f209-eb385ce1560b/source/100x100bb.jpg";
+
+        String seventeen = "https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/da/eb/51/" +
+            "daeb5176-01f1-2850-3913-28bcb9864736/source/100x100bb.jpg";
+
+        String eighteen = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/77/75/25/" +
+            "777525b4-7579-0e68-6022-890360c967cc/source/100x100bb.jpg";
+
+        String nineteen = "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
+            "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg";
+
+        String twenty = "https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
             "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg";
-        String four = "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/ff/c6/5c/" +
-            "ffc65cfc-04dd-776c-de3e-047b26fe8458/source/100x100bb.jpg";
-        String five = " https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/63/ff/76/" +
-            "63ff761d-0513-6565-28ec-1c2837dfb780/source/100x100bb.jpg";
-            String six = "https://is3-ssl.mzstatic.com/image/thumb/Music123/v4/22/55/b4/" +
-                "2255b442-0b47-b9cc-c874-a412a0b7265a/source/100x100bb.jpg";
-            String seven = "https://is2-ssl.mzstatic.com/image/thumb/Music113/v4/c9/ab/17/" +
-                "c9ab17fe-6ff5-44cb-a8b3-e6bea5ffecba/source/100x100bb.jpg";
-            String eight = "https://is4-ssl.mzstatic.com/image/thumb/Music114/v4/88/11/7b/" +
-                "88117bb6-ab0d-0134-c5be-9632d49ebc12/source/100x100bb.jpg";
-            String nine = "https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/1d/b4/d7/" +
-                "1db4d712-91d8-81e6-79f8-c2ae1458423c/source/100x100bb.jpg";
-            String ten = " https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/9c/39/91/" +
-                "9c3991d8-3949-de12-a275-4163389faae5/source/100x100bb.jpg";
-            String eleven = "https://is5-ssl.mzstatic.com/image/thumb/Music117/v4/38/42/73/" +
-                "3842738c-3090-6950-4323-a16a8d78d204/source/100x100bb.jpg";
-            String twelve = "https://is5-ssl.mzstatic.com/image/thumb/Music114/v4/c1/06/b4/" +
-                "c106b47a-82b7-55d2-24ff-4401ab979ed5/source/100x100bb.jpg";
-            String thirteen = "https://is5-ssl.mzstatic.com/image/thumb/Music117/v4/02/1f/39/" +
-                "021f39c0-806d-4b30-8cb8-12b568f5869f/source/100x100bb.jpg";
-            String fourteen = "https://is5-ssl.mzstatic.com/image/thumb/Music113/v4/2e/44/ff/" +
-                "2e44ff4b-8130-dd1a-8e63-a5937c500f87/source/100x100bb.jpg";
-            String fifteen = "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/d7/ea/f1/" +
-                "d7eaf14d-496c-f613-d5fc-f4f0c3830c71/source/100x100bb.jpg";
-            String sixteen = "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/15/e1/5c/" +
-                "15e15ccc-0c2f-bff3-e3e5-30bc53300d8f/source/100x100bb.jpg";
-            String seventeen = "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/b4/19/64/" +
-                "b419647b-ede5-1723-fbcf-91aa26715003/source/100x100bb.jpg";
-            String eighteen = "https://is5-ssl.mzstatic.com/image/thumb/Music6/v4/82/29/60/" +
-                "822960d6-68e2-55ff-b072-201aa8dc8052/source/100x100bb.jpg";
-            String nineteen = "https://is1-ssl.mzstatic.com/image/thumb/Music123/v4/5d/f6/06/" +
-                "5df60632-1c48-c507-a502-369096ff191b/source/100x100bb.jpg";
-            String twenty = "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/73/71/47/" +
-                "73714787-c46f-7e69-cec7-03db3d491b90/source/100x100bb.jpg";
+
         setDefaultImages(0, one);
         setDefaultImages( 1,  two);
         setDefaultImages( 2,  three);
