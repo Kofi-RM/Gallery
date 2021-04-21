@@ -22,7 +22,7 @@ import javafx.util.Duration;
 import javafx.event.*;
 
 /**
- * SearchBar class contains all methods and elements pertaining to a search
+ * SearchBar class contains all methods and elements pertaining to a search.
  */
 
 public class SearchBar extends HBox {
@@ -51,7 +51,7 @@ public class SearchBar extends HBox {
     Timeline timeline = new Timeline();
 
     /**
-     * SearchBar constuctor
+     * SearchBar constuctor.
      *
      * @param app App instance calling this method
      * @param bar Progress bar of the calling app
@@ -356,12 +356,24 @@ public class SearchBar extends HBox {
         });
     }
 
+    /**
+     * Removes quotes from URLs of search results.
+     *
+     * @param url URL to be trimmed
+     */
 
     public String  urlTrim(String url) {
         String trim;
         trim = url.substring(1, url.length() - 1);
         return trim;
     } // urlTrim(String url)
+
+    /**
+     * Makes URL out of current search bar text.
+     *
+     * @param textBox text from search bar
+     * @return URL for Itunes search of said term
+     */
 
     public String  urlMaker(String textBox) {
         Scanner input = new Scanner(url.getText());
@@ -390,6 +402,15 @@ public class SearchBar extends HBox {
 
     } // urlMaker(String textBox)
 
+    /**
+     * Sets string values of specified query.
+     *
+     * @param query which query is being set
+     * @param results JsonArray to draw values from
+     * @param start index of JsonArray to start at
+     * @param stop index of JsonArray to stop at
+     */
+
     public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
         query.clear(); // clear query on each new search
         if (results.size() > 300) {
@@ -403,6 +424,12 @@ public class SearchBar extends HBox {
 
         }
     } // setQuery()
+
+    /**
+     * Delete identical URLs from results of search.
+     *
+     * @param query query to delete repeats from
+     */
 
     public void deleteRepeats(ArrayList<String> query) {
         int loop1 = 0;
