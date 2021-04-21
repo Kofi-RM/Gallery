@@ -70,8 +70,11 @@ public class SearchBar extends HBox {
             app.changeMode();
             if (!app.play) {
                 pause.setText("Play");
+                timeline.stop();
+                System.out.println("here");
             } else {
                 pause.setText("Pause");
+                timeline.play();
             }
             System.out.println(app.play);
 
@@ -85,16 +88,19 @@ public class SearchBar extends HBox {
 
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.getKeyFrames().add(keyFrame);
-        Thread player = new Thread (() -> {
+/*        Thread player = new Thread (() -> {
             while (1 == 1) {
                 if (app.play && shouldPlay) {
                     timeline.play();
                     //System.out.println(app.play);
-                }
-            }
-        });
+                } else {
+                    timeline.stop();
+                    }
+                    }
+                    });
         player.setDaemon(true);
-        //timeline.play();
+        player.start();*/
+        timeline.play();
     } // SearchBar() constructor
 
     public void play() {
