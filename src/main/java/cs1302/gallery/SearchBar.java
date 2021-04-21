@@ -114,7 +114,7 @@ public class SearchBar extends HBox {
         reserve.remove(rand2); // removes image from pool
 
         if (reserve.size() == 0) {
-            setQuery(query1, results(rerun), 0, 150);
+            setQuery(reserve, results(rerun), 0, 150);
             deleteRepeats(reserve);
             //System.out.println("query size " + query1.size());
 
@@ -230,15 +230,13 @@ public class SearchBar extends HBox {
         for (int loop = 0; loop < 20;  loop++) {
             setDefaultImages(loop, initial.get(loop)); // assigns images to tilepane
         }
-        setQuery(query1, results(j), 0, 150);
-        deleteRepeats(query1);
+        setQuery(reserve, results(j), 0, 150);
+        deleteRepeats(reserve);
 
-        for (int loop = 0; loop < query1.size();  loop++) {
-            uploadImages(loop, query1, 0);
+        for (int loop = 0; loop < reserve.size();  loop++) {
+            uploadImages(loop, reserve, 0);
         } // makes images and assignes them to Image list
-
-        setQuery(reserve, query1, 20, 150); // set image reserves
-        System.out.println("reserve" + reserve.size());
+        System.out.println("size " + reserve.size() + images.size());
         timeline.play();
     } // defaultSearch()
 
@@ -436,16 +434,19 @@ public class SearchBar extends HBox {
 
     public void setQuery(ArrayList<String> query, ArrayList<String> results, int start, int stop) {
         query.clear(); // clear query on each new search
-        if (results.size() > 150) {
-            for (int loop = start; loop < stop; loop++) {
+        //if (results.size() > 150) {
+        System.out.println("size " + results.size());
+        for (int loop = start; loop < results.size() - 20; loop++) {
                 query.add(results.get(loop));
             } // if greater than 150, will "stop" at 150
-        } else {
-            for (int loop = start; loop < results.size(); loop++) {
-                query.add(results.get(loop));
+            /*       } else {
+            for (int loop = 0; loop < results.size(); loop++) {
+                query.add(results.get(start));
+                start++;
+                System.out.println("adding");
             } // if less than 150, will stop at size
 
-        }
+            }*/
     } // setQuery()
 
 
