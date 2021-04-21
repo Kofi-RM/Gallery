@@ -74,7 +74,7 @@ public class GalleryApp extends Application {
         Scene scene = new Scene(glass);
 
         //stage.setAlwaysOnTop(true);
-        stage.setMaxWidth(700);
+        stage.setMaxWidth(800);
         stage.setMaxHeight(600);
         stage.setMinWidth(300);
         stage.setMinHeight(500);

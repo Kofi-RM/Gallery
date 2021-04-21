@@ -77,8 +77,8 @@ public class SearchBar extends HBox {
         timeline.getKeyFrames().add(keyFrame); // sets timeline
 
         pause.setOnAction(e -> {
-            System.out.println(app.play);
             app.changeMode();
+
             if (!app.play) {
                 pause.setText("Play");
                 timeline.pause();
@@ -87,7 +87,6 @@ public class SearchBar extends HBox {
                 pause.setText("Pause");
                 timeline.play();
             } // switch text and mode on button press
-            System.out.println(app.play);
 
         }); // play/pauses on button press
 
@@ -118,15 +117,12 @@ public class SearchBar extends HBox {
         if (query1.size() == 0) {
             setQuery(query1, results(rerun), 0, 150);
             deleteRepeats(query1);
-            System.out.println("query size " + query1.size());
-
+            //System.out.println("query size " + query1.size());
 
             for (int loop = 0; loop < query1.size();  loop++) {
                 uploadImages(loop, query1, 0);
             }
         }
-        //System.out.println(LocalTime.now());
-        //System.out.println(app.play);
     }
 
     /**
@@ -136,7 +132,8 @@ public class SearchBar extends HBox {
 
     public void search() {
         images.clear();
-        //theDefault = false;
+        timeline.pause(); // pause timeline as query readjusts
+
         if (urlMaker(url.getText()).equals("exit")) {
             app.exit.fire();
         } else if (urlMaker(url.getText()).equals("show")) {
@@ -148,8 +145,8 @@ public class SearchBar extends HBox {
         String address = apple1 + urlMaker(url.getText())  + apple2; // makes address
         int numImages = results(address).size(); // number of search results
 
-        if (results.size() < 20) {
-            alert();
+        if (results.size() < 21) {
+            alert(); // alert if less than 21 inital results
             return;
         } else {
             setQuery(query1, results, 0, 150);
@@ -157,11 +154,12 @@ public class SearchBar extends HBox {
         }
 
         if (query1.size() < 20 ) {
-            alert();
+            alert(); // alerts if less than 21 unique results
             return;
         } else {
-            getImages(0, query1.size() - 1, query1, query1.size() - 1);
+            getImages(0, query1.size() - 1, query1, query1.size() - 1); // gets and sets images
         }
+        timeline.play(); // restarts timeline
     }
 
 
@@ -187,7 +185,7 @@ public class SearchBar extends HBox {
      */
 
     public void defaultSearch()  {
-        String j = apple1 + "dua+lipa" + apple2;
+        String j = apple1 + "aries+ditto" + apple2; // search term for default reserve images
 
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
             "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
@@ -228,22 +226,18 @@ public class SearchBar extends HBox {
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
-            "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg");
+        "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg"); // urls of inital images
 
         for (int loop = 0; loop < 20;  loop++) {
-            setDefaultImages(loop, initial.get(loop));
+            setDefaultImages(loop, initial.get(loop)); // assigns images to tilepane
         }
         setQuery(query1, results(j), 0, 150);
         deleteRepeats(query1);
-        for (int loop = 0; loop < query1.size();  loop++) {
-            System.out.println(query1.get(loop));
-        }
+
         for (int loop = 0; loop < query1.size();  loop++) {
             uploadImages(loop, query1, 0);
-        }
+        } // makes images and assignes them to Image list
 
-        System.out.println(query1.size());
-        //timeline.play();
     } // defaultSearch()
 
     /**
@@ -280,7 +274,7 @@ public class SearchBar extends HBox {
         }
 
         return results;
-    } // results(String address)
+    } // results()
 
     /**
      * Makes images and updates progress bar accordingly.
@@ -300,7 +294,6 @@ public class SearchBar extends HBox {
         pic = new Image(pi);
         images.add(pic);
         Platform.runLater(() -> {
-            //app.array[loop].setImage(pic);
             progress.bar.setProgress(bar);
         }); // sets image and progress bar
     } // uploadImages()
@@ -324,8 +317,7 @@ public class SearchBar extends HBox {
 
         if (bar > 1) {
             bar = 0;
-            System.out.println("yooo");
-        }
+        } // if bar is full it resets
 
         for (start = start; start < stop; start++) {
             bar += up;
@@ -334,12 +326,14 @@ public class SearchBar extends HBox {
 
         if (stop > 20) {
             stop = 20;
-        }
+        } // only 20 tilepanes so changes to twenty to over outOfBounds
+
         for (start = originalStart; start < stop; start++) {
             if (counter == 0) {
                 diff = start;
-            }
-            int spot = start - diff;
+            } // only sets values on the first loop
+
+            int spot = start - diff; // spot will start at zero and then rise
             setImages(start, spot);
             counter++;
         }
@@ -368,7 +362,7 @@ public class SearchBar extends HBox {
 
     public String  urlTrim(String url) {
         String trim;
-        trim = url.substring(1, url.length() - 1);
+        trim = url.substring(1, url.length() - 1); // removes quotes
         return trim;
     } // urlTrim(String url)
 
@@ -387,10 +381,10 @@ public class SearchBar extends HBox {
         while (input.hasNext() == true) {
             number++;
             input.next();
-        } // while
+        } // counts number of words
 
         if (number == 1) {
-            return text;
+            return text; // will return word if only 1
         } else if (number > 1) {
 
             Scanner input2 = new Scanner(url.getText());
@@ -398,10 +392,10 @@ public class SearchBar extends HBox {
 
             for (int loop = 0; loop < number - 1; loop++) {
                 text = text + "+" + input2.next();
-            }
+            } // adds + inbetween words
             return text;
         } else {
-            return "";
+            return ""; // if blank, returns a blank string
         }
 
     } // urlMaker(String textBox)
@@ -417,14 +411,14 @@ public class SearchBar extends HBox {
 
     public void setQuery(ArrayList<String> query, JsonArray results, int start, int stop) {
         query.clear(); // clear query on each new search
-        if (results.size() > 300) {
+        if (results.size() > 150) {
             for (int loop = start; loop < stop; loop++) {
                 query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
-            }
+            } // if greater than 150, will "stop" at 150
         } else {
             for (int loop = start; loop < results.size(); loop++) {
                 query.add(results.get(loop).getAsJsonObject().get("artworkUrl100").toString());
-            }
+            } // if less than 150, will stop at size
 
         }
     } // setQuery()
@@ -450,11 +444,10 @@ public class SearchBar extends HBox {
                         loop2++;
                     } else if (loop1 == loop2) {
                         loop2++;
-                    }
+                    } // avoid checking itself
 
                     string1 = query.get(loop1);
                     string2 = query.get(loop2);
-
 
                     if (string1.equals(string2)) {
                         query.remove(loop2);
@@ -464,8 +457,7 @@ public class SearchBar extends HBox {
                 }
             }
         } catch (IndexOutOfBoundsException io) {
-            //System.out.println("catch");
-            return;
+            return; // outOfBounds will mean method is done
         }
 
     }    // deleteRepeats()
