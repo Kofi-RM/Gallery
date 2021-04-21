@@ -67,25 +67,26 @@ public class SearchBar extends HBox {
         SearchBar.setMargin(update, new Insets(5, 5, 5, 0));
 
         update.setOnAction(e ->  {
-
             Thread task = new Thread (() -> search());
             task.setDaemon(true);
             task.start();
 
         }); // searches on a new thread on button press
+
         timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(keyFrame);
+        timeline.getKeyFrames().add(keyFrame); // sets timeline
+
         pause.setOnAction(e -> {
             System.out.println(app.play);
             app.changeMode();
             if (!app.play) {
                 pause.setText("Play");
                 timeline.pause();
-                System.out.println("here");
+
             } else {
                 pause.setText("Pause");
                 timeline.play();
-            }
+            } // switch text and mode on button press
             System.out.println(app.play);
 
         }); // play/pauses on button press
@@ -94,9 +95,8 @@ public class SearchBar extends HBox {
 
         Thread startup = new Thread (() -> defaultSearch());
         startup.setDaemon(true);
-        startup.start();
-
-        timeline.play();
+        startup.start(); // runs defaultSearch
+        timeline.play(); // starts timeline on startup
     } // SearchBar() constructor
 
     /**
@@ -108,20 +108,23 @@ public class SearchBar extends HBox {
         int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
         if (query1.size() < 22) {
             rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
-        }
+        } // random integers
+
         String rerun = apple1 + "charlie+puth" + apple2;
 
-        setImages(rand1, rand2);
-        query1.remove(rand2);
+        setImages(rand1, rand2); // sets random tile with random image
+        query1.remove(rand2); // removes image from pool
+
         if (query1.size() == 0) {
             setQuery(query1, results(rerun), 0, 150);
             deleteRepeats(query1);
             System.out.println("query size " + query1.size());
-        }
-        for (int loop = 0; loop < query1.size();  loop++) {
-            uploadImages(loop, query1, 0);
-        }
 
+
+            for (int loop = 0; loop < query1.size();  loop++) {
+                uploadImages(loop, query1, 0);
+            }
+        }
         //System.out.println(LocalTime.now());
         //System.out.println(app.play);
     }
