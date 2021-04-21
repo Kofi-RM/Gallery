@@ -41,9 +41,8 @@ public class SearchBar extends HBox {
     JsonArray results;
     Progress progress;
     double bar = 0;
-    boolean shouldPlay = true;
     ArrayList<String> query1 = new ArrayList<String>(150);
-    ArrayList<String> flashImage = new ArrayList<String>(150);
+    ArrayList<String> reserve = new ArrayList<String>(150);
     ArrayList<String> initial = new ArrayList<String>(20);
     ArrayList<Image> images = new ArrayList<Image>(150);
     EventHandler<ActionEvent> handler = event -> play();
@@ -104,10 +103,10 @@ public class SearchBar extends HBox {
 
     public void play() {
         int rand1 = (int)Math.round(Math.random() * 19);
-        int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
-        if (query1.size() < 22) {
-            rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
-        } // random integers
+        int rand2 = (int)Math.round(Math.random() * (reserve.size() - 1));
+        //if (query1.size() < 22) {
+        //  rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
+        //} // random integers
 
         String rerun = apple1 + "charlie+puth" + apple2;
 
@@ -238,6 +237,7 @@ public class SearchBar extends HBox {
             uploadImages(loop, query1, 0);
         } // makes images and assignes them to Image list
 
+        setQuery(reserve, query1, 20, 150); // set image reserves
     } // defaultSearch()
 
     /**
@@ -422,6 +422,30 @@ public class SearchBar extends HBox {
 
         }
     } // setQuery()
+
+    /**
+     * Sets string values of specified query with values from another query.
+     *
+     * @param query which query is being set
+     * @param results query to draw values from
+     * @param start index of JsonArray to start at
+     * @param stop index of JsonArray to stop at
+     */
+
+    public void setQuery(ArrayList<String> query, ArrayList<String> results, int start, int stop) {
+        query.clear(); // clear query on each new search
+        if (results.size() > 150) {
+            for (int loop = start; loop < stop; loop++) {
+                query.add(results.get(loop));
+            } // if greater than 150, will "stop" at 150
+        } else {
+            for (int loop = start; loop < results.size(); loop++) {
+                query.add(results.get(loop));
+            } // if less than 150, will stop at size
+
+        }
+    } // setQuery()
+
 
     /**
      * Delete identical URLs from results of search.
