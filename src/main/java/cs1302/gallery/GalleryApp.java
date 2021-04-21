@@ -16,7 +16,7 @@ import java.time.LocalTime;
 import javafx.util.Duration;
 
 /**
- * Represents an iTunes GalleryApp!
+ * Represents an iTunes GalleryApp.
  */
 public class GalleryApp extends Application {
 
@@ -29,9 +29,13 @@ public class GalleryApp extends Application {
     Boolean play = true;
     SearchBar search = new SearchBar(this ,progress);
 
-
-    /** {@inheritdoc} */
     @Override
+    /**
+     * Start the app.
+     *
+     *{@inheritdoc}
+     */
+
     public void start(Stage stage) {
         menu.setMinWidth(920);
         file.getItems().add(exit);
@@ -83,9 +87,9 @@ public class GalleryApp extends Application {
         stage.show();
     }
 
-    public void setExit() {
-        return;
-    }
+    /**
+     * Changes play/pause mode. Photos will not automatically change when in pause mode.
+     */
 
     public void changeMode() {
         play = !play;

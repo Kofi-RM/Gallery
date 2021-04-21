@@ -21,6 +21,10 @@ import java.time.LocalTime;
 import javafx.util.Duration;
 import javafx.event.*;
 
+/**
+ * SearchBar class contains all methods and elements pertaining to a search
+ */
+
 public class SearchBar extends HBox {
 
     Text text = new Text("Search Query:");
@@ -46,7 +50,12 @@ public class SearchBar extends HBox {
     KeyFrame keyFrame = new KeyFrame(Duration.seconds(2), handler);
     Timeline timeline = new Timeline();
 
-
+    /**
+     * SearchBar constuctor
+     *
+     * @param app App instance calling this method
+     * @param bar Progress bar of the calling app
+     */
     public SearchBar(GalleryApp app, Progress bar) {
         super(5);
 
@@ -87,20 +96,12 @@ public class SearchBar extends HBox {
         startup.setDaemon(true);
         startup.start();
 
-/*        Thread player = new Thread (() -> {
-            while (1 == 1) {
-                if (app.play && shouldPlay) {
-                    timeline.play();
-                    //System.out.println(app.play);
-                } else {
-                    timeline.stop();
-                    }
-                    }
-                    });
-        player.setDaemon(true);
-        player.start();*/
         timeline.play();
     } // SearchBar() constructor
+
+    /**
+     * Method handles rotating images when play mode is on.
+     */
 
     public void play() {
         int rand1 = (int)Math.round(Math.random() * 19);
@@ -117,15 +118,19 @@ public class SearchBar extends HBox {
             deleteRepeats(query1);
             System.out.println("query size " + query1.size());
         }
-         for (int loop = 0; loop < query1.size();  loop++) {
-             uploadImages(loop, query1, 0);
-             }
+        for (int loop = 0; loop < query1.size();  loop++) {
+            uploadImages(loop, query1, 0);
+        }
 
         //System.out.println(LocalTime.now());
         //System.out.println(app.play);
-
-
     }
+
+    /**
+     * Method searchs the text currently in the search bar.
+     * If less than 20 distinct results will bring up an error alert.
+     */
+
     public void search() {
         images.clear();
         //theDefault = false;
@@ -140,22 +145,26 @@ public class SearchBar extends HBox {
         String address = apple1 + urlMaker(url.getText())  + apple2; // makes address
         int numImages = results(address).size(); // number of search results
 
-            if (results.size() < 20) {
-                alert();
-                return;
-            } else {
-                setQuery(query1, results, 0, 150);
-                deleteRepeats(query1);
-            }
+        if (results.size() < 20) {
+            alert();
+            return;
+        } else {
+            setQuery(query1, results, 0, 150);
+            deleteRepeats(query1);
+        }
 
-            if (query1.size() < 20 ) {
-                alert();
-                return;
-            } else {
-                getImages(0, query1.size() - 1, query1, query1.size() - 1);
-            }
+        if (query1.size() < 20 ) {
+            alert();
+            return;
+        } else {
+            getImages(0, query1.size() - 1, query1, query1.size() - 1);
+        }
     }
 
+
+    /**
+     * Causes an alert pop-up.
+     */
 
     public void alert() {
         Platform.runLater (() -> {
@@ -170,27 +179,31 @@ public class SearchBar extends HBox {
 
     }
 
+    /**
+     * Gathers and sets images that show on startup.
+     */
+
     public void defaultSearch()  {
-        String j = apple1 + "ariane+grande" + apple2;
+        String j = apple1 + "dua+lipa" + apple2;
 
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/90/eb/af/" +
-        "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
+            "90ebaf50-e564-58c6-5df0-2304e32268ce/source/100x100bb.jpg");
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music124/v4/84/de/36/" +
-        "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg");
+            "84de36fd-192a-3f20-aa64-3ad475ebcd12/source/100x100bb.jpg");
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/36/d7/b7/" +
-        "36d7b769-e37c-cdea-584b-b1a80be38e08/source/100x100bb.jpg");
+            "36d7b769-e37c-cdea-584b-b1a80be38e08/source/100x100bb.jpg");
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/8e/45/f2/" +
-        "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg");
+            "8e45f291-f922-3a66-f8f4-8004af6f5514/source/100x100bb.jpg");
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/2c/60/97/" +
-        "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg");
+            "2c609768-3cb4-8980-751c-38ad54c864ce/source/100x100bb.jpg");
         initial.add("https://is5-ssl.mzstatic.com/image/thumb/Music124/v4/4b/36/41/" +
-        "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg");
+            "4b364106-85f4-2ad4-85fa-a52676428af0/source/100x100bb.jpg");
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/ce/06/50/" +
-        "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg");
+            "ce0650b2-cbf4-209d-5958-a77ae9959338/source/100x100bb.jpg");
         initial.add("https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/36/9b/a2/" +
-        "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg");
+            "369ba2e1-2dfc-6e2a-7065-4612af58fa0a/source/100x100bb.jpg");
         initial.add("https://is2-ssl.mzstatic.com/image/thumb/Music114/v4/50/8d/91/"
-        + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg");
+            + "508d9199-6e21-ee05-66ab-64db6c5ac0da/source/100x100bb.jpg");
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/5e/4f/1e/" +
@@ -239,7 +252,7 @@ public class SearchBar extends HBox {
         setQuery(query1, results, 0, 150);
         deleteRepeats(query1);
         defaultGetImages(cycles, imageStart);
-        }
+    }
 
 
 
@@ -253,7 +266,7 @@ public class SearchBar extends HBox {
             root = jetson.getAsJsonObject();
             results = root.getAsJsonArray("results");
 
-        } catch (IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
 
@@ -315,7 +328,7 @@ public class SearchBar extends HBox {
         for (int loop = 0; loop < cycles; loop++) {
             uploadImages(imageStart, query1, 0);
             imageStart++;
-         }
+        }
 
     }
 
@@ -324,13 +337,15 @@ public class SearchBar extends HBox {
             app.array[tilepane].setImage(images.get(imageIndex));
         });
     }
+
     public void imgRngLooper(int cycles, int loop, int start) {
         for (int loop1 = 0; loop1 < cycles; loop1++) {
             setImagesRange(loop, start);
             loop++;
             start++;
+        }
     }
-    }
+
     public void setImagesRange(int loop, int start) {
         Platform.runLater(() -> {
             app.array[loop].setImage(images.get(start));
@@ -348,7 +363,7 @@ public class SearchBar extends HBox {
         int number = 0;
         String text = textBox;
 
-        while(input.hasNext() == true) {
+        while (input.hasNext() == true) {
             number++;
             input.next();
         } // while
@@ -362,7 +377,7 @@ public class SearchBar extends HBox {
 
             for (int loop = 0; loop < number - 1; loop++) {
                 text = text + "+" + input2.next();
-              }
+            }
             return text;
         } else {
             return "";
@@ -392,26 +407,26 @@ public class SearchBar extends HBox {
         String string2 = query.get(loop2);
 
         try {
-        for (loop1 = 0; loop1 < query.size(); loop1++) {
-            for (loop2 = 0; loop2 < query.size(); loop2++) {
+            for (loop1 = 0; loop1 < query.size(); loop1++) {
+                for (loop2 = 0; loop2 < query.size(); loop2++) {
 
-                if (loop1 == 0 && loop2 == 0) {
-                    loop2++;
-                } else if (loop1 == loop2) {
-                    loop2++;
-                }
+                    if (loop1 == 0 && loop2 == 0) {
+                        loop2++;
+                    } else if (loop1 == loop2) {
+                        loop2++;
+                    }
 
-                string1 = query.get(loop1);
-                string2 = query.get(loop2);
+                    string1 = query.get(loop1);
+                    string2 = query.get(loop2);
 
 
-                if (string1.equals(string2)) {
-                    query.remove(loop2);
+                    if (string1.equals(string2)) {
+                        query.remove(loop2);
 
-                 loop2--;
+                        loop2--;
+                    }
                 }
             }
-        }
         } catch (IndexOutOfBoundsException io) {
             //System.out.println("catch");
             return;
