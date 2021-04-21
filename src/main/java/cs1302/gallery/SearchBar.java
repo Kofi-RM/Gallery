@@ -64,13 +64,11 @@ public class SearchBar extends HBox {
             task.start();
 
         }); // searches on a new thread on button press
-
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.getKeyFrames().add(keyFrame);
         pause.setOnAction(e -> {
             System.out.println(app.play);
             app.changeMode();
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.getKeyFrames().add(keyFrame);
-
             if (!app.play) {
                 pause.setText("Play");
                 timeline.pause();
@@ -89,8 +87,6 @@ public class SearchBar extends HBox {
         startup.setDaemon(true);
         startup.start();
 
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.getKeyFrames().add(keyFrame);
 /*        Thread player = new Thread (() -> {
             while (1 == 1) {
                 if (app.play && shouldPlay) {
