@@ -360,6 +360,7 @@ public class SearchBar extends HBox {
      * Removes quotes from URLs of search results.
      *
      * @param url URL to be trimmed
+     * @return trim trimmed URL
      */
 
     public String  urlTrim(String url) {
