@@ -94,7 +94,7 @@ public class SearchBar extends HBox {
         Thread startup = new Thread (() -> defaultSearch());
         startup.setDaemon(true);
         startup.start(); // runs defaultSearch
-        timeline.play(); // starts timeline on startup
+        //timeline.play(); // starts timeline on startup
     } // SearchBar() constructor
 
     /**
@@ -109,18 +109,18 @@ public class SearchBar extends HBox {
         //} // random integers
 
         String rerun = apple1 + "charlie+puth" + apple2;
-
+        System.out.println("rand2 " + rand2);
         setImages(rand1, rand2); // sets random tile with random image
-        query1.remove(rand2); // removes image from pool
+        reserve.remove(rand2); // removes image from pool
 
-        if (query1.size() == 0) {
+        if (reserve.size() == 0) {
             setQuery(query1, results(rerun), 0, 150);
-            deleteRepeats(query1);
+            deleteRepeats(reserve);
             //System.out.println("query size " + query1.size());
 
-            for (int loop = 0; loop < query1.size();  loop++) {
-                uploadImages(loop, query1, 0);
-            }
+            for (int loop = 0; loop < reserve.size();  loop++) {
+                uploadImages(loop, reserve, 0);
+            } // load new order of images into image array
         }
     }
 
@@ -225,7 +225,7 @@ public class SearchBar extends HBox {
         initial.add("https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/a9/23/82/" +
             "a92382be-06f7-1d8c-496e-a56182eb5980/source/100x100bb.jpg");
         initial.add("https://is3-ssl.mzstatic.com/image/thumb/Music114/v4/63/9c/5d/" +
-        "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg"); // urls of inital images
+            "639c5d99-9cf3-4fd3-c7d7-c7cfb060bf9b/source/100x100bb.jpg"); // urls of inital images
 
         for (int loop = 0; loop < 20;  loop++) {
             setDefaultImages(loop, initial.get(loop)); // assigns images to tilepane
@@ -238,6 +238,8 @@ public class SearchBar extends HBox {
         } // makes images and assignes them to Image list
 
         setQuery(reserve, query1, 20, 150); // set image reserves
+        System.out.println("reserve" + reserve.size());
+        timeline.play();
     } // defaultSearch()
 
     /**
