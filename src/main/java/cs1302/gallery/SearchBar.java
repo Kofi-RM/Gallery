@@ -243,18 +243,24 @@ public class SearchBar extends HBox {
         //timeline.play();
     } // defaultSearch()
 
+    /**
+     * Assigns startup images to the TilePane.
+     *
+     * @param tilepane index of tilepane
+     * @param url image url
+     */
+
     public void setDefaultImages(int tilepane, String url) {
         Image pic = new Image(url);
         app.array[tilepane].setImage(pic);
     }
 
-    public void defaultHelp(int cycles, int tileStart, int imageStart, JsonArray results) {
-        setQuery(query1, results, 0, 150);
-        deleteRepeats(query1);
-        defaultGetImages(cycles, imageStart);
-    }
-
-
+    /**
+     * Gathers JsonArray from Itunes search url.
+     *
+     * @param address URL for search term
+     * @return results Results of search as a JsonArray
+     */
 
     public JsonArray results(String address) {
         try {
@@ -273,6 +279,14 @@ public class SearchBar extends HBox {
         return results;
     } // results(String address)
 
+    /**
+     * Makes images and updates progress bar accordingly.
+     *
+     * @param loop index of String array
+     * @param array string array being called
+     * @param bar progress bars current value
+     */
+
     public void uploadImages(int loop, ArrayList<String> array, double bar) {
         String pi;
         Image pic;
@@ -287,6 +301,15 @@ public class SearchBar extends HBox {
             progress.bar.setProgress(bar);
         }); // sets image and progress bar
     } // uploadImages()
+
+    /**
+     * Inclusive call to upload and set images.
+     *
+     * @param start index of both tilepane and string array
+     * @param stop loops will stop executing when hitting this index
+     * @param results string array of search results
+     * @param total total number of images being uploaded; determines progress bar increments
+     */
 
     public void getImages(int start, int stop, ArrayList<String> results, int total) {
         double up = 1.0F * (1.0 / total);
@@ -320,17 +343,12 @@ public class SearchBar extends HBox {
 
     } // getImages()
 
-
-
-    public void defaultGetImages(int cycles, int imageStart) {
-        //int originalStart = start;
-        //images.clear();
-        for (int loop = 0; loop < cycles; loop++) {
-            uploadImages(imageStart, query1, 0);
-            imageStart++;
-        }
-
-    }
+    /**
+     * Sets loaded images to TilePane.
+     *
+     * @param tilepane index of tilepane
+     * @param imageIndex index of image array
+     */
 
     public void setImages(int tilepane, int imageIndex) {
         Platform.runLater(() -> {
@@ -338,19 +356,6 @@ public class SearchBar extends HBox {
         });
     }
 
-    public void imgRngLooper(int cycles, int loop, int start) {
-        for (int loop1 = 0; loop1 < cycles; loop1++) {
-            setImagesRange(loop, start);
-            loop++;
-            start++;
-        }
-    }
-
-    public void setImagesRange(int loop, int start) {
-        Platform.runLater(() -> {
-            app.array[loop].setImage(images.get(start));
-        });
-    }
 
     public String  urlTrim(String url) {
         String trim;
