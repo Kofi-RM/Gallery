@@ -68,9 +68,12 @@ public class SearchBar extends HBox {
         pause.setOnAction(e -> {
             System.out.println(app.play);
             app.changeMode();
+            timeline.setCycleCount(Timeline.INDEFINITE);
+            timeline.getKeyFrames().add(keyFrame);
+
             if (!app.play) {
                 pause.setText("Play");
-                timeline.stop();
+                timeline.pause();
                 System.out.println("here");
             } else {
                 pause.setText("Pause");
@@ -104,7 +107,7 @@ public class SearchBar extends HBox {
     } // SearchBar() constructor
 
     public void play() {
-        /*int rand1 = (int)Math.round(Math.random() * 19);
+        int rand1 = (int)Math.round(Math.random() * 19);
         int rand2 = (int)Math.round(Math.random() * (query1.size() - 21) + 20);
         if (query1.size() < 22) {
             rand2 = (int)Math.round(Math.random() * (query1.size() - 1) );
@@ -120,10 +123,10 @@ public class SearchBar extends HBox {
         }
          for (int loop = 0; loop < query1.size();  loop++) {
              uploadImages(loop, query1, 0);
-             }*/
+             }
 
-        System.out.println(LocalTime.now());
-        System.out.println(app.play);
+        //System.out.println(LocalTime.now());
+        //System.out.println(app.play);
 
 
     }
